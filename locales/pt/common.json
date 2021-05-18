@@ -1,8 +1,8 @@
 {
-    "hello": "Olá",
-    "greet": "Olá, {{name}}!",
-    "world": "Mundo",
-    "documentation": "Olhe a documentação",
+    "name": "Speech to Video",
+    "hello": "Diga olá ao ",
+    "img-description": "Fluxo de transformação de audio ou fala para vídeo",
+    "app-description": "O Speech to Video, transforma o seu discurso em um conjunto de imagens gerando um video que corresponde a junção das imagens com o seu discurso.",
     "language": {
         "pt": "🇹🇷 Português",
         "en": "🇺🇸 Inglês"

@@ -1,53 +1,49 @@
 import styled from 'styled-components';
 
-export const Container = styled.div`
+export const Wrapper = styled.div`
     display: flex;
-    flex: 1;
     justify-content: center;
-    align-item: center;
-    padding-bottom: 3rem;
-    background-color: ${({ theme }) => theme.colors.cardsBg};
+    background-color: ${({ theme }) => theme.colors.background};
+    padding: 80px 0;
 `;
 
-export const Row = styled.div`
+export const Container = styled.div`
+    text-align: center;
     display: flex;
-    flex-wrap: wrap;
-    max-width: 71rem;
-
-    @media (max-width: 575px) {
-        flex-direction: column;
-    }
-`;
-
-export const Col = styled.div`
-    flex: 0 0 25%;
-    max-width: 25%;
-
-    @media (max-width: 575px) {
-        max-width: 100%;
-    }
-`;
-
-export const Card = styled.div`
-    padding: 1rem;
-    box-sizing: border-box;
-`;
-
-export const CardBody = styled.div`
-    display: flex;
+    padding: 0 40px;
     flex-direction: column;
+
+    @media (min-width: ${({ theme }) => theme.breakpoints.medium}) {
+        padding: 0 10px;
+        flex-direction: row;
+        justify-content: space-evenly;
+        img {
+            flex: 1;
+        }
+        div {
+            flex: 0.4;
+        }
+    }
 `;
 
-export const CardTitle = styled.h3`
-    font-size: 1.75rem;
-    margin-bottom: 0.5rem;
-    font-weight: 500;
-    color: ${({ theme }) => theme.colors.textColor};
-`;
+export const TextContainer = styled.div`
+    @media (min-width: ${({ theme }) => theme.breakpoints.medium}) {
+        padding-right: 16px;
+        text-align: left;
+    }
+    h1 {
+        padding-bottom: 0.75rem;
+        line-height: 1.2;
+        margin-bottom: 0.5em;
+        margin-top: 0;
+        font-size: 2.75rem;
 
-export const CardText = styled.p`
-    margin-top: 0.5rem;
-    margin-bottom: 1rem;
-    line-height: 1.5rem;
-    color: ${({ theme }) => theme.colors.textColor};
+        span {
+            color: ${({ theme }) => theme.colors.primary};
+            font-weight: bold;
+        }
+    }
+    p {
+        font-weight: 300;
+    }
 `;

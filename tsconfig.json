@@ -1,7 +1,11 @@
 {
     "compilerOptions": {
         "target": "es5",
-        "lib": ["dom", "dom.iterable", "esnext"],
+        "lib": [
+            "dom",
+            "dom.iterable",
+            "esnext"
+        ],
         "allowJs": true,
         "skipLibCheck": true,
         "strict": false,
@@ -15,19 +19,55 @@
         "jsx": "preserve",
         "baseUrl": ".",
         "paths": {
-            "@components/*": ["src/components/*"],
-            "@components": ["src/components"],
-            "@styles/*": ["src/styles/*"],
-            "@styles": ["src/styles"],
-            "@theme/*": ["test/theme/*"],
-            "@theme": ["test/theme"],
-            "@public/*": ["public/*"],
-            "@public": ["public"],
-            "@i18n": ["./i18n.json"],
-            "@test/*": ["test/*"],
-            "@test": ["test"]
+            "@components/*": [
+                "src/components/*"
+            ],
+            "@components": [
+                "src/components"
+            ],
+            "@interfaces/*": [
+                "src/interfaces/*"
+            ],
+            "@interfaces": [
+                "src/interfaces"
+            ],
+            "@styles/*": [
+                "src/styles/*"
+            ],
+            "@styles": [
+                "src/styles"
+            ],
+            "@theme/*": [
+                "src/theme/*"
+            ],
+            "@theme": [
+                "src/theme"
+            ],
+            "@public/*": [
+                "public/*"
+            ],
+            "@public": [
+                "public"
+            ],
+            "@i18n": [
+                "./i18n.json"
+            ],
+            "@test/*": [
+                "test/*"
+            ],
+            "@test": [
+                "test"
+            ]
         }
     },
-    "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],
-    "exclude": ["node_modules", "test/*", "cypress/*"]
+    "include": [
+        "next-env.d.ts",
+        "**/*.ts",
+        "**/*.tsx"
+    ],
+    "exclude": [
+        "node_modules",
+        "test/*",
+        "cypress/*"
+    ]
 }

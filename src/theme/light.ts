@@ -1,19 +1,29 @@
 import { DefaultTheme } from 'styled-components';
 
 const light: DefaultTheme = {
-    name: 'light',
     colors: {
         transparent: 'transparent',
-        darkGrey: '#282C34',
-        blackGrey: '#20232A',
         white: '#FFFFFF',
-        toggleBorder: '#ABB7C4',
         gradient: 'linear-gradient(#39598A, #79D7ED)',
-        background: '#282C34',
-        headerBg: '#20232A',
-        cardsBg: '#FFFFFF',
-        textColor: '#000000',
-        dodgerBlue: '#007BFF',
+        primary: '#F5B66B',
+        background: '#F8F6EE',
+        text: '#484848',
+    },
+    breakpoints: {
+        small: '767px',
+        medium: '840px',
+    },
+    borderRadius: {
+        s: '8px',
+        m: '14px',
+        l: '16px',
+    },
+    spacing: {
+        s: '16px',
+        m: '24px',
+        l: '28px',
+        xl: '48px',
+        xxl: '58px',
     },
 };
 

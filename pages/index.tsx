@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { Wrapper, Main, Header } from '@components';
+import { Wrapper, Main, Header, Body } from '@components';
 import GlobalStyle from '@styles/globalStyles';
 
 const Home: React.FC = () => {
@@ -9,6 +9,7 @@ const Home: React.FC = () => {
             <GlobalStyle />
             <Header />
             <Main />
+            <Body />
         </Wrapper>
     );
 };

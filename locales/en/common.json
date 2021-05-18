@@ -1,8 +1,8 @@
 {
-    "hello": "Hello",
-    "greet": "Hello, {{name}}!",
-    "world": "World",
-    "documentation": "Go To Documentation",
+    "name": "Speech to Video",
+    "hello": "Sey Hello to ",
+    "img-description": "Speech to video transform flow",
+    "app-description": "Speech to Video transforms your speech into a set of images generating a video that corresponds to the junction of the images with your speech.",
     "language": {
         "pt": "pt Portuguese",
         "en": "🇺🇸 English"
