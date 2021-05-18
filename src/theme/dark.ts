@@ -1,11 +1,11 @@
-// #region Global Imports
 import { DefaultTheme } from 'styled-components';
-// #endregion Global Imports
-import { common } from './common';
+import { light } from './light';
 
 const dark: DefaultTheme = {
+    ...light,
+    name: 'dark',
     colors: {
-        ...common.colors,
+        ...light.colors,
         toggleBorder: '#556678',
         gradient: 'linear-gradient(#091236, #1E215D)',
         background: '#20232A',

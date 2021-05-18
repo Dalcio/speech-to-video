@@ -1,9 +1,10 @@
 import 'styled-components';
 
-type CommonColors = 'transparent' | 'darkGrey' | 'blackGrey' | 'white';
-
 type ExtendedColors =
-    | CommonColors
+    | 'transparent'
+    | 'darkGrey'
+    | 'blackGrey'
+    | 'white'
     | 'toggleBorder'
     | 'gradient'
     | 'background'
@@ -11,12 +12,10 @@ type ExtendedColors =
     | 'cardsBg'
     | 'textColor'
     | 'dodgerBlue';
-declare module 'styled-components' {
-    export interface BaseTheme {
-        colors: Record<CommonColors, string>;
-    }
 
-    export interface DefaultTheme extends BaseTheme {
+declare module 'styled-components' {
+    export interface DefaultTheme {
+        name: 'light' | 'dark';
         colors: Record<ExtendedColors, string>;
     }
 }
