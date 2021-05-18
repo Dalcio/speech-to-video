@@ -1,6 +1,6 @@
-const withPlugins = require("next-compose-plugins");
+const withPlugins = require('next-compose-plugins');
 
-const nextTranslate = require("next-translate");
+const nextTranslate = require('next-translate');
 
 const config = {};
 

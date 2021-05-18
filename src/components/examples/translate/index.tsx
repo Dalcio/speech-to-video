@@ -1,8 +1,8 @@
-import React from "react";
-import Link from "next/link";
-import useTranslation from "next-translate/useTranslation";
+import React from 'react';
+import Link from 'next/link';
+import useTranslation from 'next-translate/useTranslation';
 
-import i18nConfig from "@i18n";
+import i18nConfig from '@i18n';
 
 const { locales } = i18nConfig;
 
@@ -16,7 +16,7 @@ const { locales } = i18nConfig;
 export const NextTranslateExample: React.FC<{ defaultNamespace: string }> = ({
     defaultNamespace,
 }) => {
-    const { t, lang } = useTranslation(defaultNamespace);
+    const { t } = useTranslation(defaultNamespace);
 
     return (
         <div>
@@ -31,7 +31,7 @@ export const NextTranslateExample: React.FC<{ defaultNamespace: string }> = ({
                 </div>
             </header>
             <main>
-                <p>{t("common:greet", { name: t`common:world` })}</p>
+                <p>{t('common:greet', { name: t`common:world` })}</p>
                 <p>{t`someText`}</p>
             </main>
             <footer>

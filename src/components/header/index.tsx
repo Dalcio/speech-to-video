@@ -1,14 +1,13 @@
-import React from "react";
+import React from 'react';
 
-import { Logo, Toggle } from "@components";
-import { Wrapper, Container } from "./styled";
+import { Wrapper, Container } from './styled';
 
 export const Header: React.FC = () => {
     return (
         <Wrapper>
-            <Container data-testid="container">
-                <Logo />
-                <Toggle />
+            <Container>
+                <h1>superplate</h1>
+                <p>The frontend boilerplate with superpowers!</p>
             </Container>
         </Wrapper>
     );

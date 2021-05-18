@@ -1,6 +1,6 @@
-import React from "react";
+import React from 'react';
 
-import { BaseButton } from "./styled";
+import { BaseButton } from './styled';
 
 export type IButton = React.DetailedHTMLProps<
     React.ButtonHTMLAttributes<HTMLButtonElement>,

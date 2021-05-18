@@ -1,20 +1,25 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 export const Wrapper = styled.div`
     display: flex;
     justify-content: center;
-    background-color: ${({ theme }) => theme.colors.headerBg};
+    background-color: ${({ theme }) => theme.colors.background};
+    padding: 2rem 0;
+    color: ${({ theme }) => theme.colors.white};
 `;
 
 export const Container = styled.div`
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
     text-align: center;
     max-width: 71rem;
-    min-width: 71rem;
 
-    @media (max-width: 575px) {
-        min-width: 22rem;
+    h1 {
+        font-size: 5.5rem;
+        font-weight: 300;
+        line-height: 1.2rem;
+        padding-bottom: 0.75rem;
+    }
+    p {
+        font-size: 1.25rem;
+        font-weight: 300;
     }
 `;

@@ -1,12 +1,12 @@
-import React from "react";
-import { AppProps } from "next/app";
-import { StyledThemeProvider } from "@definitions/styled-components";
+import React from 'react';
+import { AppProps } from 'next/app';
+import { ThemeProvider } from '@theme';
 
 function MyApp({ Component, pageProps }: AppProps): JSX.Element {
     return (
-        <StyledThemeProvider>
+        <ThemeProvider>
             <Component {...pageProps} />
-        </StyledThemeProvider>
+        </ThemeProvider>
     );
 }
 
