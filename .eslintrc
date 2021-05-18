@@ -10,7 +10,8 @@
             "error",
             {
                 "singleQuote": true,
-                "semi": true
+                "semi": true,
+                "endOfLine": "auto"
             }
         ]
     },
