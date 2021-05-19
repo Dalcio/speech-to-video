@@ -1,19 +1,21 @@
 export * from './dark';
 export * from './light';
 
-import React from 'react';
+import React, { createContext, FC, useContext, useMemo, useState } from 'react';
 import { ThemeProvider as DefaultThemeProvider } from 'styled-components';
+import SnackbarProvider from 'react-simple-snackbar';
 
 import { dark } from './dark';
 import { light } from './light';
+import { ThemeContextProps } from './type';
 
-export const ThemeContext = React.createContext({
+export const ThemeContext = createContext<ThemeContextProps>({
     theme: 'light',
     toggle: () => undefined,
 });
 
 export const useTheme = () => {
-    const { theme, toggle } = React.useContext(ThemeContext);
+    const { theme, toggle } = useContext(ThemeContext);
 
     return {
         theme: theme === 'light' ? light : dark,
@@ -22,14 +24,14 @@ export const useTheme = () => {
     };
 };
 
-export const ThemeProvider: React.FC = ({ children }) => {
-    const [theme, setTheme] = React.useState('light');
+export const ThemeProvider: FC = ({ children }) => {
+    const [theme, setTheme] = useState('light');
 
     const toggle = () => {
         setTheme((theme) => (theme === 'light' ? 'dark' : 'light'));
     };
 
-    const values = React.useMemo(
+    const values = useMemo(
         () => ({
             theme,
             toggle,
@@ -39,9 +41,11 @@ export const ThemeProvider: React.FC = ({ children }) => {
 
     return (
         <ThemeContext.Provider value={values}>
-            <DefaultThemeProvider theme={theme === 'light' ? light : dark}>
-                {children}
-            </DefaultThemeProvider>
+            <SnackbarProvider>
+                <DefaultThemeProvider theme={theme === 'light' ? light : dark}>
+                    {children}
+                </DefaultThemeProvider>
+            </SnackbarProvider>
         </ThemeContext.Provider>
     );
 };

@@ -8,6 +8,8 @@ const light: DefaultTheme = {
         primary: '#F5B66B',
         background: '#F8F6EE',
         text: '#484848',
+        error: '#B70A0F',
+        success: '#4EA855',
     },
     breakpoints: {
         small: '767px',

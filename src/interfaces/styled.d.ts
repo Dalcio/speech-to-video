@@ -6,6 +6,8 @@ type CommonColors =
     | 'gradient'
     | 'background'
     | 'primary'
+    | 'error'
+    | 'success'
     | 'text';
 
 type BreakPoints = {
