@@ -15,7 +15,15 @@ const GlobalStyle = createGlobalStyle`
   }
 
   p {
-      font-size: 1.45rem;
+    font-size: ${({ theme }) => theme.fontSize.p};
+  }
+  
+  h2 {
+    font-size: ${({ theme }) => theme.fontSize.h2};
+  }
+
+  h1 {
+    font-size: ${({ theme }) => theme.fontSize.h1};
   }
 `;
 

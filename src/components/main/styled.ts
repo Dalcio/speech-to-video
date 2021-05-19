@@ -36,7 +36,6 @@ export const TextContainer = styled.div`
         line-height: 1.2;
         margin-bottom: 0.5em;
         margin-top: 0;
-        font-size: 2.75rem;
 
         span {
             color: ${({ theme }) => theme.colors.primary};

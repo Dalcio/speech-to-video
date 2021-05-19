@@ -25,6 +25,11 @@ const light: DefaultTheme = {
         xl: '48px',
         xxl: '58px',
     },
+    fontSize: {
+        p: '1.15rem',
+        h2: '1.45rem',
+        h1: '2.75rem',
+    },
 };
 
 export { light };

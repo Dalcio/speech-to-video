@@ -1,4 +1,12 @@
 {
     "title": "Pagina inicial",
-    "someText": "Eu vi o telefone porque eles eram adjetivos felizes derivados. Eles correm para Adana porque o endereço da loja de peixe pimenta é computador, mas a sopa azeda em direção à casa na lâmpada. Tanto é assim que eu corri sem precedentes sacudiu Adana para a mesa para os olhos."
+    "step-one": {
+        "drag-n-drop": {
+            "inactive": "Arraste e solte o áudio aqui ou clique para selecioná-lo",
+            "active": "Largue o áudio aqui, por ex.: .mp3, .wav ..."
+        },
+        "title": "Transforme áudio em vídeo como nunca antes",
+        "message": "Você pode transformar seu áudio em vídeo enviando um arquivo ou pode gravar um áudio agora e transformá-lo em vídeo clicando no botão para gravar"
+    },
+    "step-two": {}
 }

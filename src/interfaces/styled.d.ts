@@ -27,11 +27,18 @@ type Spacing = {
     xxl: string;
 };
 
+type FontSize = {
+    p: string;
+    h1: string;
+    h2: string;
+};
+
 declare module 'styled-components' {
     export interface DefaultTheme {
         colors: Record<CommonColors, string>;
         breakpoints: BreakPoints;
-        borderRadius: Record<BorderRadius, string>;
-        spacing: Record<Spacing, string>;
+        borderRadius: BorderRadius;
+        spacing: Spacing;
+        fontSize: FontSize;
     }
 }
