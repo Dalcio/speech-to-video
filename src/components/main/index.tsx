@@ -2,14 +2,14 @@ import React from 'react';
 import Image from 'next/image';
 import useTranslation from 'next-translate/useTranslation';
 
-import { Wrapper, Container, TextContainer } from './styled';
+import { MainWrapper, MainContainer, TextContainer } from './styled';
 
 export const Main: React.FC = () => {
     const { t } = useTranslation();
 
     return (
-        <Wrapper>
-            <Container>
+        <MainWrapper>
+            <MainContainer>
                 <TextContainer>
                     <h1>
                         {t`common:hello`}
@@ -23,7 +23,7 @@ export const Main: React.FC = () => {
                     width="810"
                     height="460"
                 />
-            </Container>
-        </Wrapper>
+            </MainContainer>
+        </MainWrapper>
     );
 };

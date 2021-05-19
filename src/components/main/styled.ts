@@ -1,13 +1,13 @@
 import styled from 'styled-components';
 
-export const Wrapper = styled.div`
+export const MainWrapper = styled.div`
     display: flex;
     justify-content: center;
     background-color: ${({ theme }) => theme.colors.background};
     padding: 80px 0;
 `;
 
-export const Container = styled.div`
+export const MainContainer = styled.div`
     text-align: center;
     display: flex;
     padding: 0 40px;

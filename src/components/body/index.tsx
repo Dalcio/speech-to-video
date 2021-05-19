@@ -1,11 +1,13 @@
-import React from 'react';
+import React, { useState } from 'react';
 
-import { Container } from './styled';
+import { BodyContainer } from './styled';
 
 export const Body: React.FC = () => {
+    const [steps, setSteps] = useState<number>(0);
+
     return (
-        <Container>
+        <BodyContainer>
             <p>Body activity</p>
-        </Container>
+        </BodyContainer>
     );
 };

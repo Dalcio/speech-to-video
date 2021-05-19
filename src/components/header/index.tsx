@@ -1,13 +1,13 @@
 import useTranslation from 'next-translate/useTranslation';
 import Image from 'next/image';
 import React from 'react';
-import { Wrapper } from './styled';
+import { HeaderWrapper } from './styled';
 
 export const Header: React.FC = () => {
     const { t } = useTranslation();
 
     return (
-        <Wrapper>
+        <HeaderWrapper>
             <Image
                 src="/icons/logo-icon.svg"
                 alt={t`common:name`}
@@ -15,6 +15,6 @@ export const Header: React.FC = () => {
                 height="42"
             />
             <h2>{t`common:name`}</h2>
-        </Wrapper>
+        </HeaderWrapper>
     );
 };

@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const Wrapper = styled.div`
+export const HeaderWrapper = styled.div`
     background-color: ${({ theme }) => theme.colors.background};
     padding: 26px 112px;
     display: flex;

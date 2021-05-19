@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const Container = styled.div`
+export const BodyContainer = styled.div`
     display: flex;
     flex: 1;
     justify-content: center;
@@ -41,12 +41,12 @@ export const CardTitle = styled.h3`
     font-size: 1.75rem;
     margin-bottom: 0.5rem;
     font-weight: 500;
-    color: ${({ theme }) => theme.colors.textColor};
+    color: ${({ theme }) => theme.colors.primary};
 `;
 
 export const CardText = styled.p`
     margin-top: 0.5rem;
     margin-bottom: 1rem;
     line-height: 1.5rem;
-    color: ${({ theme }) => theme.colors.textColor};
+    color: ${({ theme }) => theme.colors.primary};
 `;
