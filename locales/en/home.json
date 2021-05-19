@@ -1,4 +1,12 @@
 {
     "title": "Home",
-    "someText": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed hendrerit, lacus vel blandit auctor, mauris metus sollicitudin nulla, vitae feugiat mi elit at nunc. Suspendisse accumsan pulvinar tellus, sit amet pharetra elit tincidunt vitae. Suspendisse potenti."
+    "step-one": {
+        "drag-n-drop": {
+            "inactive": "Drag n' drop the audio here, or click to select the audio",
+            "active": "Drop the audio here eg.: .mp3, .wav..."
+        },
+        "title": "Transform audios to video like never before",
+        "message": "You can turn your audio into video by uploading a file or you can record an audio now and transform it video by clicking the button to record"
+    },
+    "step-two": {}
 }
