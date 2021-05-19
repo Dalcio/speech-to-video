@@ -5,7 +5,7 @@ import React, { useState } from 'react';
 import { BodyContainer } from './styled';
 
 export const Body: React.FC = () => {
-    const [step, setStep] = useState<number>(1);
+    const [step, setStep] = useState<number>(1 + 1);
     const [transcript, setTranscript] = useState<string>();
     const [audio, setAudio] = useState<File>();
 
