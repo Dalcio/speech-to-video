@@ -14,6 +14,7 @@ export const AppContext = createContext<AppContextProps>({
     setVideoFile: () => undefined,
     setTranscript: () => undefined,
     handleCurrentWord: () => undefined,
+    imgExist: () => undefined,
     currentWord: undefined,
     selectedImages: [],
     audioFile: undefined,
@@ -44,29 +45,22 @@ const mockImages4 = {
     url: 'https://miro.medium.com/max/2800/1*Gflf0YTQmugEesBFVzJQ2A.jpeg',
 };
 
+export const mockedImages = [
+    mockImages1,
+    mockImages2,
+    mockImages3,
+    mockImages4,
+];
+
 export const AppProvider: FC = ({ children }) => {
     const [selectedImages, setSelectedImages] = useState<SelectedImageProps[]>([
         {
             word: 'belas',
-            images: [
-                mockImages1,
-                mockImages2,
-                mockImages1,
-                mockImages2,
-                mockImages1,
-                mockImages2,
-            ],
+            images: mockedImages,
         },
         {
             word: 'mulheres',
-            images: [
-                mockImages3,
-                mockImages4,
-                mockImages2,
-                mockImages4,
-                mockImages3,
-                mockImages1,
-            ],
+            images: mockedImages.reverse(),
         },
     ]);
     const [audioFile, setAudioFile] = useState<VideoFile>();
@@ -82,6 +76,20 @@ export const AppProvider: FC = ({ children }) => {
         alert('removing the file');
     };
 
+    const imgExist = (imgUrl: string) => {
+        const currentWordImages = selectedImages.filter(
+            ({ word }) => word.toLowerCase() === currentWord.toLowerCase(),
+        );
+        if (currentWordImages.length === 0) return false;
+
+        const exist =
+            currentWordImages[0].images.filter(
+                ({ url }) =>
+                    url.toLocaleLowerCase() === imgUrl.toLocaleLowerCase(),
+            ).length > 0;
+        return exist;
+    };
+
     const values = useMemo(
         () => ({
             selectedImages,
@@ -89,6 +97,7 @@ export const AppProvider: FC = ({ children }) => {
             videoFile,
             transcript,
             currentWord,
+            imgExist,
             setTranscript,
             setAudioFile,
             setVideoFile,

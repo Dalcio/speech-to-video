@@ -14,7 +14,7 @@ const StepTwo: FC<StepTwoProps> = ({ setStep }) => {
     };
 
     useEffect(() => {
-        handleCurrentWord('primeira palavra');
+        handleCurrentWord('belas');
     }, []);
 
     return (

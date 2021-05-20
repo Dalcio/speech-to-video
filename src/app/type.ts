@@ -4,6 +4,7 @@ export type AppContextProps = {
     videoFile: VideoFile;
     transcript: string;
     currentWord: string;
+    imgExist: (imgUrl: string) => boolean;
     addImage: (imgId: string) => void;
     removeImage: (imgId: string) => void;
     setAudioFile: (audioFile: AudioFile) => void;
