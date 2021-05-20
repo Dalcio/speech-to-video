@@ -23,10 +23,52 @@ export const AppContext = createContext<AppContextProps>({
 
 export const useApp = () => useContext(AppContext);
 
+const mockImages1 = {
+    alt: 'React JS',
+    isSelected: true,
+    url: 'https://blog.logrocket.com/wp-content/uploads/2018/06/React-createref-DOM.png',
+};
+const mockImages2 = {
+    alt: 'Two people using a computer to hide the scrollbar using CS',
+    isSelected: true,
+    url: 'https://blog.hubspot.com/hubfs/Google%20Drive%20Integration/How%20to%20Hide%20the%20Scollbar%20in%20CSS.jpeg',
+};
+const mockImages3 = {
+    alt: 'Adriana Barbosa Ilustração: Davi Augusto/VOCÊ S/A',
+    isSelected: true,
+    url: 'https://vocesa.abril.com.br/wp-content/uploads/2020/04/abre-adriana-01.jpg?quality=70&strip=info&w=225',
+};
+const mockImages4 = {
+    alt: 'Trator',
+    isSelected: true,
+    url: 'https://miro.medium.com/max/2800/1*Gflf0YTQmugEesBFVzJQ2A.jpeg',
+};
+
 export const AppProvider: FC = ({ children }) => {
-    const [selectedImages, setSelectedImages] = useState<SelectedImageProps[]>(
-        [],
-    );
+    const [selectedImages, setSelectedImages] = useState<SelectedImageProps[]>([
+        {
+            word: 'belas',
+            images: [
+                mockImages1,
+                mockImages2,
+                mockImages1,
+                mockImages2,
+                mockImages1,
+                mockImages2,
+            ],
+        },
+        {
+            word: 'mulheres',
+            images: [
+                mockImages3,
+                mockImages4,
+                mockImages2,
+                mockImages4,
+                mockImages3,
+                mockImages1,
+            ],
+        },
+    ]);
     const [audioFile, setAudioFile] = useState<VideoFile>();
     const [videoFile, setVideoFile] = useState<AudioFile>();
     const [transcript, setTranscript] = useState<string>('');
