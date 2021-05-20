@@ -35,6 +35,10 @@ type FontSize = {
     h2: string;
 };
 
+type Shadows = {
+    default: string;
+};
+
 declare module 'styled-components' {
     export interface DefaultTheme {
         colors: Record<CommonColors, string>;
@@ -42,5 +46,6 @@ declare module 'styled-components' {
         borderRadius: BorderRadius;
         spacing: Spacing;
         fontSize: FontSize;
+        shadows: Shadows;
     }
 }
