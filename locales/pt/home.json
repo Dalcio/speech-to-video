@@ -8,5 +8,10 @@
         "title": "Transforme áudio em vídeo como nunca antes",
         "message": "Você pode transformar seu áudio em vídeo enviando um arquivo ou pode gravar um áudio agora e transformá-lo em vídeo clicando no botão para gravar"
     },
-    "step-two": {}
+    "step-two": {
+        "labels": {
+            "select": "Selecionar",
+            "remove": "Remover"
+        }
+    }
 }

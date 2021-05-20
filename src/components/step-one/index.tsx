@@ -6,7 +6,7 @@ import React, { FC, useState } from 'react';
 import { StepOneContainer, StepOneWrapper, TextContainer } from './styled';
 import { StepOneProps } from './type';
 
-const StepOne: FC<StepOneProps> = ({ setStep, setTranscript, setAudio }) => {
+const StepOne: FC<StepOneProps> = ({ setStep }) => {
     const { t } = useTranslation();
     const [show, setShow] = useState<ShowProps>('both');
 
@@ -18,18 +18,10 @@ const StepOne: FC<StepOneProps> = ({ setStep, setTranscript, setAudio }) => {
             </TextContainer>
             <StepOneContainer>
                 {(show === 'both' || show === 'drag') && (
-                    <DropZone
-                        setAudio={setAudio}
-                        setShow={setShow}
-                        show={show}
-                    />
+                    <DropZone setShow={setShow} show={show} />
                 )}
                 {(show === 'both' || show === 'record') && (
-                    <RecordButton
-                        setAudio={setAudio}
-                        setShow={setShow}
-                        show={show}
-                    />
+                    <RecordButton setShow={setShow} show={show} />
                 )}
             </StepOneContainer>
         </StepOneWrapper>

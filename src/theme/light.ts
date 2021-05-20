@@ -21,6 +21,7 @@ const light: DefaultTheme = {
         l: '16px',
     },
     spacing: {
+        xs: '6px',
         s: '16px',
         m: '24px',
         l: '28px',
@@ -28,6 +29,7 @@ const light: DefaultTheme = {
         xxl: '58px',
     },
     fontSize: {
+        tiny: '0.6rem',
         p: '1.15rem',
         h2: '1.45rem',
         h1: '2.75rem',

@@ -8,6 +8,7 @@ import SnackbarProvider from 'react-simple-snackbar';
 import { dark } from './dark';
 import { light } from './light';
 import { ThemeContextProps } from './type';
+import { DisplayImage } from '@components';
 
 export const ThemeContext = createContext<ThemeContextProps>({
     theme: 'light',
@@ -43,7 +44,7 @@ export const ThemeProvider: FC = ({ children }) => {
         <ThemeContext.Provider value={values}>
             <SnackbarProvider>
                 <DefaultThemeProvider theme={theme === 'light' ? light : dark}>
-                    {children}
+                    <DisplayImage>{children}</DisplayImage>
                 </DefaultThemeProvider>
             </SnackbarProvider>
         </ThemeContext.Provider>

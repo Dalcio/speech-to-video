@@ -1,3 +1,4 @@
+import { useApp } from '@app-data';
 import {
     faChevronLeft,
     faChevronRight,
@@ -5,15 +6,27 @@ import {
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React, { FC } from 'react';
 
-import { CurrentWordContainer, NextWordBtn, PreviousWordBtn } from './styled';
-import { CurrentWordProps } from './types';
+import { CurrentWordContainer, PreviousNextWordBtn } from './styled';
 
-const CurrentWord: FC<CurrentWordProps> = ({ currentWord }) => {
+const CurrentWord: FC = () => {
+    const { currentWord } = useApp();
+
+    const previousWord = () => {
+        alert('previous');
+    };
+    const nextWord = () => {
+        alert('next word');
+    };
+
     return (
         <CurrentWordContainer>
-            <PreviousWordBtn>Previous word</PreviousWordBtn>
+            <PreviousNextWordBtn onClick={previousWord}>
+                <FontAwesomeIcon icon={faChevronLeft} />
+            </PreviousNextWordBtn>
             <span>{currentWord}</span>
-            <NextWordBtn>Next word</NextWordBtn>
+            <PreviousNextWordBtn onClick={nextWord}>
+                <FontAwesomeIcon icon={faChevronRight} />
+            </PreviousNextWordBtn>
         </CurrentWordContainer>
     );
 };

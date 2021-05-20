@@ -1,3 +1,4 @@
+import { useApp } from '@app-data';
 import useTranslation from 'next-translate/useTranslation';
 import React, { FC, useCallback, useState } from 'react';
 import { useDropzone as useDropZone } from 'react-dropzone';
@@ -5,9 +6,10 @@ import { AudioProps } from '../types';
 
 import { DropZoneContainer } from './styled';
 
-export const DropZone: FC<AudioProps> = ({ setAudio, setShow, show }) => {
+export const DropZone: FC<AudioProps> = ({ setShow, show }) => {
     const { t } = useTranslation();
     const [selected, setSelected] = useState<string>('');
+    const { setAudioFile } = useApp();
 
     const onDrop = useCallback((acceptedFile) => {
         // Do something with the files

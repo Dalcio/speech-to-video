@@ -22,6 +22,7 @@ type BorderRadius = {
 };
 
 type Spacing = {
+    xs: string;
     s: string;
     m: string;
     l: string;
@@ -30,6 +31,7 @@ type Spacing = {
 };
 
 type FontSize = {
+    tiny: string;
     p: string;
     h1: string;
     h2: string;

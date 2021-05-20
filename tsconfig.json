@@ -49,6 +49,12 @@
             "@theme": [
                 "src/theme"
             ],
+            "@app-data/*": [
+                "src/app/*"
+            ],
+            "@app-data": [
+                "src/app"
+            ],
             "@public/*": [
                 "public/*"
             ],

@@ -1,12 +1,12 @@
 import React from 'react';
 import { AppProps } from 'next/app';
-import { ThemeProvider } from '@theme';
+import { AppProvider } from '@app-data';
 
 function MyApp({ Component, pageProps }: AppProps): JSX.Element {
     return (
-        <ThemeProvider>
+        <AppProvider>
             <Component {...pageProps} />
-        </ThemeProvider>
+        </AppProvider>
     );
 }
 
