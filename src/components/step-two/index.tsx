@@ -7,8 +7,7 @@ import { StepTwoContainer, StepTwoAsideLeft } from './styled';
 import { StepTwoProps } from './types';
 
 const StepTwo: FC<StepTwoProps> = ({ setStep }) => {
-    const { setTranscript, transcript, handleCurrentWord, currentWord } =
-        useApp();
+    const { setTranscript, transcript, handleCurrentWord } = useApp();
 
     const handleTextArea = (event: ChangeEvent<HTMLTextAreaElement>) => {
         setTranscript(event.target.value);
@@ -21,7 +20,7 @@ const StepTwo: FC<StepTwoProps> = ({ setStep }) => {
     return (
         <StepTwoContainer>
             <StepTwoAsideLeft>
-                <CurrentWord currentWord={currentWord} />
+                <CurrentWord />
                 <textarea value={transcript} onChange={handleTextArea} />
             </StepTwoAsideLeft>
             <HandleImages />
