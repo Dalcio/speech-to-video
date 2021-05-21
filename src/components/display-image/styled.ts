@@ -21,4 +21,18 @@ export const ShowImageContainer = styled.div`
             border-radius: 8px;
         }
     }
+    button {
+        cursor: pointer;
+        border: unset;
+        background: unset;
+        position: absolute;
+        font-size: 40px;
+        right: 20px;
+        top: 20px;
+
+        &:hover {
+            color: red;
+            transform: rotate(-45deg);
+        }
+    }
 `;

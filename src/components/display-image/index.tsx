@@ -1,3 +1,5 @@
+import { faTimes } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React, { createRef, FC, useEffect } from 'react';
 
 import { ShowImageContainer } from './styled';
@@ -10,7 +12,7 @@ const closeImageRef = () => {
         ref.current.style.display = 'none';
     }
     if (imgRef) {
-        imgRef.current.src = undefined;
+        imgRef.current.src = '';
     }
 };
 
@@ -43,6 +45,9 @@ export const DisplayImage: FC = ({ children }) => {
                 <div id="img">
                     <img ref={imgRef} />
                 </div>
+                <button onClick={closeImageRef}>
+                    <FontAwesomeIcon icon={faTimes} />
+                </button>
             </ShowImageContainer>
         </div>
     );
