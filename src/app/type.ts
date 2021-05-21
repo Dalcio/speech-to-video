@@ -6,7 +6,7 @@ export type AppContextProps = {
     currentWord: string;
     newImagesToBeAdded: ImgProps[];
     imgExist: (imgUrl: string) => boolean;
-    addImage: (imgId: string) => void;
+    addImages: () => void;
     removeImage: (relatedWord: string, imgUrl: string) => void;
     setAudioFile: (audioFile: AudioFile) => void;
     setVideoFile: (videoFile: VideoFile) => void;

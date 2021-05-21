@@ -37,6 +37,23 @@ export const WordRelatedImagesContainer = styled.div`
     #img-remove {
         border: 5px solid ${({ theme }) => theme.colors.primary};
     }
+
+    #add-images {
+        cursor: pointer;
+        position: absolute;
+        background-color: ${({ theme }) => theme.colors.success};
+        color: ${({ theme }) => theme.colors.white};
+        border: unset;
+        padding: ${({ theme }) => theme.spacing.s};
+        text-align: center;
+        font-size: 15px;
+        ${({ theme }) => theme.shadows.default};
+        margin: ${({ theme }) => `${theme.spacing.s} 0 0 0`};
+        border-radius: ${({ theme }) => theme.borderRadius.s};
+        &:hover {
+            opacity: 0.8;
+        }
+    }
 `;
 
 export const AudioImagesContainer = styled.div`

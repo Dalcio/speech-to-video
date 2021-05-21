@@ -16,7 +16,7 @@ import {
 } from './type';
 
 export const AppContext = createContext<AppContextProps>({
-    addImage: () => undefined,
+    addImages: () => undefined,
     removeImage: () => undefined,
     setAudioFile: () => undefined,
     setVideoFile: () => undefined,
@@ -76,8 +76,28 @@ export const AppProvider: FC = ({ children }) => {
     const [transcript, setTranscript] = useState<string>('');
     const [currentWord, handleCurrentWord] = useState<string>('');
 
-    const addImage = (imgId: string) => {
-        alert('adding the file');
+    const addImages = () => {
+        const index = selectedImages.findIndex(
+            ({ word }) =>
+                word.toLowerCase() === currentWord.toLocaleLowerCase(),
+        );
+        const tmpArr: SelectedImageProps[] = [...selectedImages];
+
+        if (index >= 0) {
+            const tmpImg = [...tmpArr[index].images];
+            newImagesToBeAdded.map((img) => {
+                if (tmpImg.filter(({ url }) => url === img.url).length <= 0) {
+                    tmpImg.push(img);
+                }
+            });
+            tmpArr[index].images = tmpImg;
+        } else {
+            tmpArr.push({
+                word: currentWord,
+                images: [...newImagesToBeAdded],
+            });
+        }
+        setSelectedImages([...tmpArr]);
     };
 
     const removeImage = (relatedWord: string, imgUrl: string) => {
@@ -128,7 +148,7 @@ export const AppProvider: FC = ({ children }) => {
             setTranscript,
             setAudioFile,
             setVideoFile,
-            addImage,
+            addImages,
             removeImage,
             handleCurrentWord,
             setNewImagesToBeAdded,
@@ -142,7 +162,7 @@ export const AppProvider: FC = ({ children }) => {
             setTranscript,
             setAudioFile,
             setVideoFile,
-            addImage,
+            addImages,
             removeImage,
             handleCurrentWord,
         ],

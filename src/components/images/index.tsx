@@ -1,5 +1,6 @@
 import { useApp } from '@app-data';
 import { ImgProps } from '@app-data/type';
+import useTranslation from 'next-translate/useTranslation';
 import React, { FC, useEffect, useState } from 'react';
 import Img from './img';
 import {
@@ -34,8 +35,10 @@ export const HandleImages: FC = () => {
         imgExist,
         removeImage,
         setNewImagesToBeAdded,
+        addImages,
     } = useApp();
     const [imagesToAdd, setImagesToAdd] = useState<ImgProps[]>(mock);
+    const { t } = useTranslation();
 
     const getImages = () => {
         //
@@ -44,7 +47,6 @@ export const HandleImages: FC = () => {
     const select = (img: ImgProps) => {
         const tmpArr: ImgProps[] = [...newImagesToBeAdded];
         tmpArr.push(img);
-
         setNewImagesToBeAdded([...tmpArr]);
     };
 
@@ -52,8 +54,8 @@ export const HandleImages: FC = () => {
         const tmpArr: ImgProps[] = newImagesToBeAdded.filter(
             ({ url }) => url.toLowerCase() !== imgUrl.toLowerCase(),
         );
-
         setNewImagesToBeAdded([...tmpArr]);
+        removeImage(currentWord, imgUrl);
     };
 
     return (
@@ -69,6 +71,12 @@ export const HandleImages: FC = () => {
                         add={() => select({ alt, url, isSelected: true })}
                     />
                 ))}
+                {imagesToAdd.length > 0 && (
+                    <button
+                        onClick={addImages}
+                        id="add-images"
+                    >{t`home:step-two.labels.add-images`}</button>
+                )}
             </WordRelatedImagesContainer>
             <AudioImagesContainer>
                 {selectedImages.map(({ images, word }) =>
@@ -78,7 +86,10 @@ export const HandleImages: FC = () => {
                             alt={alt}
                             isSelected={true}
                             key={`${word}-${index}`}
-                            remove={() => removeImage(word, url)}
+                            remove={() => {
+                                remove(url);
+                                removeImage(word, url);
+                            }}
                         />
                     )),
                 )}

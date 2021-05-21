@@ -11,7 +11,8 @@
     "step-two": {
         "labels": {
             "select": "Selecionar",
-            "remove": "Remover"
+            "remove": "Remover",
+            "add-images":"Adicionar imagens"
         }
     }
 }
