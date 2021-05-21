@@ -4,13 +4,15 @@ export type AppContextProps = {
     videoFile: VideoFile;
     transcript: string;
     currentWord: string;
+    newImagesToBeAdded: ImgProps[];
     imgExist: (imgUrl: string) => boolean;
     addImage: (imgId: string) => void;
-    removeImage: (imgId: string) => void;
+    removeImage: (relatedWord: string, imgUrl: string) => void;
     setAudioFile: (audioFile: AudioFile) => void;
     setVideoFile: (videoFile: VideoFile) => void;
     setTranscript: (transcript: string) => void;
     handleCurrentWord: (currentWord: string) => void;
+    setNewImagesToBeAdded: (img: ImgProps[]) => void;
 };
 
 export type AudioFile = {

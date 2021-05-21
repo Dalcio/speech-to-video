@@ -1,8 +1,16 @@
 import { ThemeProvider } from '@theme';
-import React, { createContext, FC, useContext, useMemo, useState } from 'react';
+import React, {
+    createContext,
+    FC,
+    useContext,
+    useEffect,
+    useMemo,
+    useState,
+} from 'react';
 import {
     AppContextProps,
     AudioFile,
+    ImgProps,
     SelectedImageProps,
     VideoFile,
 } from './type';
@@ -15,11 +23,13 @@ export const AppContext = createContext<AppContextProps>({
     setTranscript: () => undefined,
     handleCurrentWord: () => undefined,
     imgExist: () => undefined,
+    newImagesToBeAdded: undefined,
     currentWord: undefined,
     selectedImages: [],
     audioFile: undefined,
     videoFile: undefined,
     transcript: undefined,
+    setNewImagesToBeAdded: () => undefined,
 });
 
 export const useApp = () => useContext(AppContext);
@@ -45,24 +55,22 @@ const mockImages4 = {
     url: 'https://miro.medium.com/max/2800/1*Gflf0YTQmugEesBFVzJQ2A.jpeg',
 };
 
-export const mockedImages = [
-    mockImages1,
-    mockImages2,
-    mockImages3,
-    mockImages4,
-];
+export const mockedImages = [mockImages1, mockImages2];
 
 export const AppProvider: FC = ({ children }) => {
     const [selectedImages, setSelectedImages] = useState<SelectedImageProps[]>([
         {
             word: 'belas',
-            images: mockedImages,
+            images: [mockImages3, mockImages1, mockImages4, mockImages2],
         },
         {
             word: 'mulheres',
-            images: mockedImages.reverse(),
+            images: [mockImages3, mockImages4],
         },
     ]);
+    const [newImagesToBeAdded, setNewImagesToBeAdded] = useState<ImgProps[]>(
+        [],
+    );
     const [audioFile, setAudioFile] = useState<VideoFile>();
     const [videoFile, setVideoFile] = useState<AudioFile>();
     const [transcript, setTranscript] = useState<string>('');
@@ -72,23 +80,41 @@ export const AppProvider: FC = ({ children }) => {
         alert('adding the file');
     };
 
-    const removeImage = (imgId: string) => {
-        alert('removing the file');
+    const removeImage = (relatedWord: string, imgUrl: string) => {
+        const index = selectedImages.findIndex(
+            ({ word }) => word.toLowerCase() === relatedWord.toLowerCase(),
+        );
+        const tempImages = selectedImages[index].images.filter(
+            ({ url }) => url !== imgUrl,
+        );
+        const tmpSpecificWordImages: SelectedImageProps = {
+            ...selectedImages[index],
+            images: tempImages,
+        };
+
+        const tmpSelectedImages: SelectedImageProps[] = [...selectedImages];
+        tmpSelectedImages[index] = tmpSpecificWordImages;
+
+        setSelectedImages([...tmpSelectedImages]);
     };
 
     const imgExist = (imgUrl: string) => {
-        const currentWordImages = selectedImages.filter(
-            ({ word }) => word.toLowerCase() === currentWord.toLowerCase(),
-        );
-        if (currentWordImages.length === 0) return false;
-
         const exist =
-            currentWordImages[0].images.filter(
+            newImagesToBeAdded.filter(
                 ({ url }) =>
                     url.toLocaleLowerCase() === imgUrl.toLocaleLowerCase(),
             ).length > 0;
         return exist;
     };
+
+    useEffect(() => {
+        const tmpIndex = selectedImages.findIndex(
+            ({ word }) => word.toLowerCase() === currentWord.toLowerCase(),
+        );
+        if (tmpIndex >= 0) {
+            setNewImagesToBeAdded([...selectedImages[tmpIndex].images]);
+        }
+    }, [selectedImages, currentWord]);
 
     const values = useMemo(
         () => ({
@@ -97,6 +123,7 @@ export const AppProvider: FC = ({ children }) => {
             videoFile,
             transcript,
             currentWord,
+            newImagesToBeAdded,
             imgExist,
             setTranscript,
             setAudioFile,
@@ -104,6 +131,7 @@ export const AppProvider: FC = ({ children }) => {
             addImage,
             removeImage,
             handleCurrentWord,
+            setNewImagesToBeAdded,
         }),
         [
             selectedImages,

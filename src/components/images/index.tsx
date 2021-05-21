@@ -1,6 +1,6 @@
 import { useApp } from '@app-data';
 import { ImgProps } from '@app-data/type';
-import React, { FC, useState } from 'react';
+import React, { FC, useEffect, useState } from 'react';
 import Img from './img';
 import {
     AudioImagesContainer,
@@ -27,11 +27,33 @@ const mock = [
 ];
 
 export const HandleImages: FC = () => {
-    const { selectedImages, currentWord, imgExist } = useApp();
+    const {
+        selectedImages,
+        currentWord,
+        newImagesToBeAdded,
+        imgExist,
+        removeImage,
+        setNewImagesToBeAdded,
+    } = useApp();
     const [imagesToAdd, setImagesToAdd] = useState<ImgProps[]>(mock);
 
     const getImages = () => {
         //
+    };
+
+    const select = (img: ImgProps) => {
+        const tmpArr: ImgProps[] = [...newImagesToBeAdded];
+        tmpArr.push(img);
+
+        setNewImagesToBeAdded([...tmpArr]);
+    };
+
+    const remove = (imgUrl: string) => {
+        const tmpArr: ImgProps[] = newImagesToBeAdded.filter(
+            ({ url }) => url.toLowerCase() !== imgUrl.toLowerCase(),
+        );
+
+        setNewImagesToBeAdded([...tmpArr]);
     };
 
     return (
@@ -43,6 +65,8 @@ export const HandleImages: FC = () => {
                         alt={alt}
                         isSelected={imgExist(url)}
                         key={`${currentWord}-${index}`}
+                        remove={() => remove(url)}
+                        add={() => select({ alt, url, isSelected: true })}
                     />
                 ))}
             </WordRelatedImagesContainer>
@@ -54,6 +78,7 @@ export const HandleImages: FC = () => {
                             alt={alt}
                             isSelected={true}
                             key={`${word}-${index}`}
+                            remove={() => removeImage(word, url)}
                         />
                     )),
                 )}

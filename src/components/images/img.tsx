@@ -1,11 +1,11 @@
-import { ImgProps } from '@app-data/type';
 import { useDisplayImage } from '@components/display-image';
 import useTranslation from 'next-translate/useTranslation';
 import React, { FC, useEffect, useState } from 'react';
 
 import { ImgContainer } from './styled';
+import { ExtendedImgProps } from './type';
 
-const Img: FC<ImgProps> = ({ url, alt, isSelected }) => {
+const Img: FC<ExtendedImgProps> = ({ url, alt, isSelected, add, remove }) => {
     const [label, setLabel] = useState<string>('');
     const { t } = useTranslation();
     const { showImage } = useDisplayImage();
@@ -23,11 +23,10 @@ const Img: FC<ImgProps> = ({ url, alt, isSelected }) => {
     };
 
     const addRem = () => {
-        alert(`${alt}  =>  ${!isSelected ? 'select' : 'remove'}`);
         if (isSelected) {
-            alert('removing');
+            remove();
         } else {
-            alert('adding');
+            add();
         }
     };
 
