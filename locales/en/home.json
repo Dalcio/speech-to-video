@@ -12,7 +12,8 @@
         "labels": {
             "select": "Select",
             "remove": "Remove",
-            "add-images":"Add images"
+            "add-images":"Add images",
+            "transform":"Transform now"
         }
     }
 }

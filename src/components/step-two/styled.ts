@@ -6,6 +6,7 @@ export const StepTwoWrapper = styled.div`
 
     div div div,
     div div:first-child,
+    div div:last-child,
     textarea {
         border-radius: ${({ theme }) => theme.borderRadius.s};
         ${({ theme }) => theme.shadows.default}
@@ -82,5 +83,20 @@ export const PreviousNextWordBtn = styled.button`
     &:last-child {
         border-top-right-radius: ${({ theme }) => theme.borderRadius.s};
         border-bottom-right-radius: ${({ theme }) => theme.borderRadius.s};
+    }
+`;
+
+export const TransformBtn = styled.button`
+    position: fixed;
+    bottom: ${({ theme }) => theme.spacing.m};
+    right: ${({ theme }) => theme.spacing.m};
+    padding: ${({ theme }) => theme.spacing.s};
+    border: unset;
+    cursor: pointer;
+    background-color: ${({ theme }) => theme.colors.success};
+    color: ${({ theme }) => theme.colors.white};
+    border-radius: ${({ theme }) => theme.borderRadius.s};
+    &:hover {
+        opacity: 0.8;
     }
 `;

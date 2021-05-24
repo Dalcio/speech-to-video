@@ -1,14 +1,21 @@
 import { useApp } from '@app-data';
 import { AllSelectedImages } from '@components/all-selected-images';
 import { HandleImages } from '@components/images';
+import useTranslation from 'next-translate/useTranslation';
 
 import React, { ChangeEvent, FC, useEffect } from 'react';
 
 import CurrentWord from './current-word';
-import { StepTwoContainer, StepTwoAsideLeft, StepTwoWrapper } from './styled';
+import {
+    StepTwoContainer,
+    StepTwoAsideLeft,
+    StepTwoWrapper,
+    TransformBtn,
+} from './styled';
 import { StepTwoProps } from './types';
 
 const StepTwo: FC<StepTwoProps> = ({ setStep }) => {
+    const { t } = useTranslation();
     const { transcript, setTranscript, handleCurrentWord } = useApp();
 
     const handleTextArea = (event: ChangeEvent<HTMLTextAreaElement>) => {
@@ -18,6 +25,10 @@ const StepTwo: FC<StepTwoProps> = ({ setStep }) => {
     useEffect(() => {
         handleCurrentWord('belas');
     }, []);
+
+    const goToTransformStep = () => {
+        setStep(3);
+    };
 
     return (
         <StepTwoWrapper>
@@ -29,6 +40,9 @@ const StepTwo: FC<StepTwoProps> = ({ setStep }) => {
                 <HandleImages />
             </StepTwoContainer>
             <AllSelectedImages />
+            <TransformBtn
+                onClick={goToTransformStep}
+            >{t`home:step-two.labels.transform`}</TransformBtn>
         </StepTwoWrapper>
     );
 };
