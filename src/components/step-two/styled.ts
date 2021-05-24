@@ -6,7 +6,6 @@ export const StepTwoWrapper = styled.div`
 
     div div div,
     div div:first-child,
-    div:last-child,
     textarea {
         border-radius: ${({ theme }) => theme.borderRadius.s};
         ${({ theme }) => theme.shadows.default}

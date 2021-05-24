@@ -1,12 +1,13 @@
 import styled from 'styled-components';
 
 export const AllSelectedContainer = styled.div`
-    margin-top: ${({ theme }) => theme.spacing.s};
-    background-color: ${({ theme }) => theme.colors.primary};
     height: 150px;
-
-    overflow: auto hidden;
     white-space: nowrap;
+    overflow: auto hidden;
+    ${({ theme }) => theme.shadows.default}
+    margin-top: ${({ theme }) => theme.spacing.s};
+    border-radius: ${({ theme }) => theme.borderRadius.s};
+    background-color: ${({ theme }) => theme.colors.primary};
 
     span {
         img {
