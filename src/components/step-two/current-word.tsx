@@ -9,22 +9,30 @@ import React, { FC } from 'react';
 import { CurrentWordContainer, PreviousNextWordBtn } from './styled';
 
 const CurrentWord: FC = () => {
-    const { currentWord } = useApp();
-
-    const previousWord = () => {
-        alert('previous');
-    };
-    const nextWord = () => {
-        alert('next word');
-    };
+    const {
+        currentWord,
+        previousWord,
+        nextWord,
+        transcriptsIndex,
+        transcripts,
+    } = useApp();
 
     return (
         <CurrentWordContainer>
-            <PreviousNextWordBtn onClick={previousWord}>
+            <PreviousNextWordBtn
+                onClick={previousWord}
+                disabled={transcriptsIndex === 0 || transcripts.length === 0}
+            >
                 <FontAwesomeIcon icon={faChevronLeft} />
             </PreviousNextWordBtn>
             <span>{currentWord}</span>
-            <PreviousNextWordBtn onClick={nextWord}>
+            <PreviousNextWordBtn
+                onClick={nextWord}
+                disabled={
+                    transcriptsIndex === transcripts.length - 1 ||
+                    transcripts.length <= 1
+                }
+            >
                 <FontAwesomeIcon icon={faChevronRight} />
             </PreviousNextWordBtn>
         </CurrentWordContainer>

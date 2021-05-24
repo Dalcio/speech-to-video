@@ -16,15 +16,11 @@ import { StepTwoProps } from './types';
 
 const StepTwo: FC<StepTwoProps> = ({ setStep }) => {
     const { t } = useTranslation();
-    const { transcript, setTranscript, handleCurrentWord } = useApp();
+    const { transcript, setTranscript, selectedImages } = useApp();
 
     const handleTextArea = (event: ChangeEvent<HTMLTextAreaElement>) => {
         setTranscript(event.target.value);
     };
-
-    useEffect(() => {
-        handleCurrentWord('belas');
-    }, []);
 
     const goToTransformStep = () => {
         setStep(3);
@@ -40,9 +36,11 @@ const StepTwo: FC<StepTwoProps> = ({ setStep }) => {
                 <HandleImages />
             </StepTwoContainer>
             <AllSelectedImages />
-            <TransformBtn
-                onClick={goToTransformStep}
-            >{t`home:step-two.labels.transform`}</TransformBtn>
+            {selectedImages.length > 1 && (
+                <TransformBtn
+                    onClick={goToTransformStep}
+                >{t`home:step-two.labels.transform`}</TransformBtn>
+            )}
         </StepTwoWrapper>
     );
 };

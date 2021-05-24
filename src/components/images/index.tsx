@@ -1,27 +1,12 @@
 import { useApp } from '@app-data';
 import { ImgProps } from '@app-data/type';
+import { KEYS } from '@constants';
+import { useSnackbar } from '@hooks';
 import useTranslation from 'next-translate/useTranslation';
-import React, { FC, useState } from 'react';
+import React, { FC, useEffect, useState } from 'react';
 import Img from './img';
-import { HandleImagesContainer, WordRelatedImagesContainer } from './styled';
 
-const mock = [
-    {
-        alt: 'Two people using a computer to hide the scrollbar using CS',
-        isSelected: true,
-        url: 'https://blog.hubspot.com/hubfs/Google%20Drive%20Integration/How%20to%20Hide%20the%20Scollbar%20in%20CSS.jpeg',
-    },
-    {
-        alt: 'Adriana Barbosa Ilustração: Davi Augusto/VOCÊ S/A',
-        isSelected: true,
-        url: 'https://vocesa.abril.com.br/wp-content/uploads/2020/04/abre-adriana-01.jpg?quality=70&strip=info&w=225',
-    },
-    {
-        alt: 'Dog from lorem ipsum',
-        isSelected: true,
-        url: 'https://picsum.photos/id/237/200/300',
-    },
-];
+import { WordRelatedImagesContainer } from './styled';
 
 export const HandleImages: FC = () => {
     const {
@@ -32,12 +17,25 @@ export const HandleImages: FC = () => {
         addImages,
         remove,
     } = useApp();
-    const [imagesToAdd, setImagesToAdd] = useState<ImgProps[]>(mock);
+    const { openErrorSnackbar } = useSnackbar();
+    const [imagesToAdd, setImagesToAdd] = useState<ImgProps[]>([]);
     const { t } = useTranslation();
 
-    const getImages = () => {
-        //
+    const getImages = async () => {
+        try {
+            const res = await fetch(`${KEYS.localhost}${currentWord}`);
+            const images = await res.json();
+            console.log(images);
+        } catch (error) {
+            openErrorSnackbar(t`common:errors.something-wrong`);
+        }
     };
+
+    useEffect(() => {
+        if (currentWord === '' || !currentWord) {
+            getImages();
+        }
+    }, [currentWord]);
 
     const select = (img: ImgProps) => {
         const tmpArr: ImgProps[] = [...newImagesToBeAdded];

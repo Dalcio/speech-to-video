@@ -3,8 +3,8 @@
     "hello": "Sey Hello to ",
     "img-description": "Speech to video transform flow",
     "app-description": "Speech to Video transforms your speech into a set of images generating a video that corresponds to the junction of the images with your speech.",
-    "language": {
-        "pt": "pt Portuguese",
-        "en": "🇺🇸 English"
+    "language": "En para Português",
+    "errors": {
+        "something-wrong": "Something happened in the search for images."
     }
 }

@@ -70,7 +70,10 @@ export const PreviousNextWordBtn = styled.button`
     border: unset;
     color: ${({ theme }) => theme.colors.white};
     font-size: ${({ theme }) => theme.fontSize.p};
-
+    &:disabled {
+        background-color: gray;
+        opacity: 0.8;
+    }
     &:hover {
         opacity: 0.8;
     }

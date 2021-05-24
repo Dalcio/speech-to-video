@@ -19,62 +19,39 @@ export const AppContext = createContext<AppContextProps>({
     setNewImagesToBeAdded: () => undefined,
     handleCurrentWord: () => undefined,
     setTranscript: () => undefined,
+    setTranscripts: () => undefined,
     setAudioFile: () => undefined,
     setVideoFile: () => undefined,
     removeImage: () => undefined,
     addImages: () => undefined,
     imgExist: () => undefined,
     remove: () => undefined,
+    previousWord: () => undefined,
+    nextWord: () => undefined,
     selectedImages: [],
+    transcriptsIndex: undefined,
     audioFile: undefined,
     videoFile: undefined,
     transcript: undefined,
+    transcripts: undefined,
     currentWord: undefined,
     newImagesToBeAdded: undefined,
 });
 
 export const useApp = () => useContext(AppContext);
 
-const mockImages1 = {
-    alt: 'React JS',
-    isSelected: true,
-    url: 'https://blog.logrocket.com/wp-content/uploads/2018/06/React-createref-DOM.png',
-};
-const mockImages2 = {
-    alt: 'Two people using a computer to hide the scrollbar using CS',
-    isSelected: true,
-    url: 'https://blog.hubspot.com/hubfs/Google%20Drive%20Integration/How%20to%20Hide%20the%20Scollbar%20in%20CSS.jpeg',
-};
-const mockImages3 = {
-    alt: 'Adriana Barbosa Ilustração: Davi Augusto/VOCÊ S/A',
-    isSelected: true,
-    url: 'https://vocesa.abril.com.br/wp-content/uploads/2020/04/abre-adriana-01.jpg?quality=70&strip=info&w=225',
-};
-const mockImages4 = {
-    alt: 'Trator',
-    isSelected: true,
-    url: 'https://miro.medium.com/max/2800/1*Gflf0YTQmugEesBFVzJQ2A.jpeg',
-};
-
-export const mockedImages = [mockImages1, mockImages2];
-
 export const AppProvider: FC = ({ children }) => {
-    const [selectedImages, setSelectedImages] = useState<SelectedImageProps[]>([
-        {
-            word: 'belas',
-            images: [mockImages3, mockImages1, mockImages4, mockImages2],
-        },
-        {
-            word: 'mulheres',
-            images: [mockImages3, mockImages4],
-        },
-    ]);
+    const [selectedImages, setSelectedImages] = useState<SelectedImageProps[]>(
+        [],
+    );
     const [newImagesToBeAdded, setNewImagesToBeAdded] = useState<ImgProps[]>(
         [],
     );
     const [audioFile, setAudioFile] = useState<VideoFile>();
     const [videoFile, setVideoFile] = useState<AudioFile>();
     const [transcript, setTranscript] = useState<string>('');
+    const [transcripts, setTranscripts] = useState<string[]>([]);
+    const [transcriptsIndex, setTranscriptsIndex] = useState<number>(0);
     const [currentWord, handleCurrentWord] = useState<string>('');
 
     const addImages = () => {
@@ -136,6 +113,35 @@ export const AppProvider: FC = ({ children }) => {
         return exist;
     };
 
+    const previousWord = () => {
+        if (transcriptsIndex >= 1) {
+            setTranscriptsIndex((prev) => prev - 1);
+        }
+    };
+
+    const nextWord = () => {
+        if (transcriptsIndex < transcripts.length - 1) {
+            setTranscriptsIndex((prev) => prev + 1);
+        }
+    };
+
+    useEffect(() => {
+        handleCurrentWord(transcripts[transcriptsIndex]);
+    }, [transcriptsIndex]);
+
+    useEffect(() => {
+        setTranscripts(transcript.split(' '));
+    }, [transcript]);
+
+    useEffect(() => {
+        if (currentWord === '' || !currentWord) {
+            handleCurrentWord(transcripts[0]);
+        }
+        if (transcripts.length <= 0) {
+            handleCurrentWord('');
+        }
+    }, [transcripts]);
+
     useEffect(() => {
         const tmpIndex = selectedImages.findIndex(
             ({ word }) => word.toLowerCase() === currentWord.toLowerCase(),
@@ -151,10 +157,15 @@ export const AppProvider: FC = ({ children }) => {
             audioFile,
             videoFile,
             transcript,
+            transcripts,
             currentWord,
             newImagesToBeAdded,
+            transcriptsIndex,
+            nextWord,
+            previousWord,
             imgExist,
             setTranscript,
+            setTranscripts,
             setAudioFile,
             setVideoFile,
             addImages,
@@ -168,13 +179,22 @@ export const AppProvider: FC = ({ children }) => {
             audioFile,
             videoFile,
             transcript,
+            transcripts,
             currentWord,
+            newImagesToBeAdded,
+            transcriptsIndex,
+            nextWord,
+            previousWord,
+            imgExist,
             setTranscript,
+            setTranscripts,
             setAudioFile,
             setVideoFile,
             addImages,
             removeImage,
             handleCurrentWord,
+            remove,
+            setNewImagesToBeAdded,
         ],
     );
 
