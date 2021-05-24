@@ -16,20 +16,21 @@ import {
 } from './type';
 
 export const AppContext = createContext<AppContextProps>({
-    addImages: () => undefined,
-    removeImage: () => undefined,
+    setNewImagesToBeAdded: () => undefined,
+    handleCurrentWord: () => undefined,
+    setTranscript: () => undefined,
     setAudioFile: () => undefined,
     setVideoFile: () => undefined,
-    setTranscript: () => undefined,
-    handleCurrentWord: () => undefined,
+    removeImage: () => undefined,
+    addImages: () => undefined,
     imgExist: () => undefined,
-    newImagesToBeAdded: undefined,
-    currentWord: undefined,
+    remove: () => undefined,
     selectedImages: [],
     audioFile: undefined,
     videoFile: undefined,
     transcript: undefined,
-    setNewImagesToBeAdded: () => undefined,
+    currentWord: undefined,
+    newImagesToBeAdded: undefined,
 });
 
 export const useApp = () => useContext(AppContext);
@@ -118,6 +119,14 @@ export const AppProvider: FC = ({ children }) => {
         setSelectedImages([...tmpSelectedImages]);
     };
 
+    const remove = (imgUrl: string) => {
+        const tmpArr: ImgProps[] = newImagesToBeAdded.filter(
+            ({ url }) => url.toLowerCase() !== imgUrl.toLowerCase(),
+        );
+        setNewImagesToBeAdded([...tmpArr]);
+        removeImage(currentWord, imgUrl);
+    };
+
     const imgExist = (imgUrl: string) => {
         const exist =
             newImagesToBeAdded.filter(
@@ -151,6 +160,7 @@ export const AppProvider: FC = ({ children }) => {
             addImages,
             removeImage,
             handleCurrentWord,
+            remove,
             setNewImagesToBeAdded,
         }),
         [

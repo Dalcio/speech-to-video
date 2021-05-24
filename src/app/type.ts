@@ -12,6 +12,7 @@ export type AppContextProps = {
     setVideoFile: (videoFile: VideoFile) => void;
     setTranscript: (transcript: string) => void;
     handleCurrentWord: (currentWord: string) => void;
+    remove: (imgUrl: string) => void;
     setNewImagesToBeAdded: (img: ImgProps[]) => void;
 };
 

@@ -1,17 +1,22 @@
 import styled from 'styled-components';
 
-export const StepTwoContainer = styled.div`
-    display: flex;
-    flex: 1;
-    flex-direction: row;
+export const StepTwoWrapper = styled.div`
     padding: ${({ theme }) => `${theme.spacing.xl} ${theme.spacing.m}`};
+    flex: 1;
 
-    div div,
-    div:first-child,
+    div div div,
+    div div:first-child,
+    div:last-child,
     textarea {
         border-radius: ${({ theme }) => theme.borderRadius.s};
         ${({ theme }) => theme.shadows.default}
     }
+`;
+
+export const StepTwoContainer = styled.div`
+    display: flex;
+    flex: 1;
+    flex-direction: row;
 
     textarea {
         outline: none;

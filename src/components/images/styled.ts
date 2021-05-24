@@ -1,24 +1,22 @@
 import styled from 'styled-components';
 
-export const HandleImagesContainer = styled.div`
-    flex: 1;
-
-    @media (max-width: ${({ theme }) => theme.breakpoints.medium}) {
-        margin-top: ${({ theme }) => theme.spacing.m};
-    }
-
-    div {
-        display: grid;
-        grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-    }
-`;
-
 export const WordRelatedImagesContainer = styled.div`
-    height: 400px;
+    flex: 1;
     overflow-y: auto;
     overflow-x: hidden;
     padding: ${({ theme }) => `0 0 ${theme.spacing.s} ${theme.spacing.s}`};
     justify-content: space-evenly;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+
+    @media (max-width: ${({ theme }) => theme.breakpoints.medium}) {
+        margin-top: ${({ theme }) => theme.spacing.m};
+        height: 300px;
+    }
+
+    @media (min-width: ${({ theme }) => theme.breakpoints.medium}) {
+        align-self: stretch;
+    }
 
     span {
         margin: ${({ theme }) => `${theme.spacing.s} ${theme.spacing.s} 0 0`};
@@ -28,10 +26,6 @@ export const WordRelatedImagesContainer = styled.div`
         height: 150px;
         border-radius: ${({ theme }) => theme.borderRadius.s};
         width: 150px;
-    }
-
-    @media (max-width: ${({ theme }) => theme.breakpoints.medium}) {
-        height: 300px;
     }
 
     #img-remove {
@@ -52,19 +46,6 @@ export const WordRelatedImagesContainer = styled.div`
         border-radius: ${({ theme }) => theme.borderRadius.s};
         &:hover {
             opacity: 0.8;
-        }
-    }
-`;
-
-export const AudioImagesContainer = styled.div`
-    flex: 1;
-    margin-top: ${({ theme }) => theme.spacing.s};
-    background-color: ${({ theme }) => theme.colors.primary};
-    height: 150px;
-    overflow-y: auto;
-    span:first-child {
-        button {
-            border-bottom-right-radius: 0;
         }
     }
 `;

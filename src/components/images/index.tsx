@@ -1,13 +1,9 @@
 import { useApp } from '@app-data';
 import { ImgProps } from '@app-data/type';
 import useTranslation from 'next-translate/useTranslation';
-import React, { FC, useEffect, useState } from 'react';
+import React, { FC, useState } from 'react';
 import Img from './img';
-import {
-    AudioImagesContainer,
-    HandleImagesContainer,
-    WordRelatedImagesContainer,
-} from './styled';
+import { HandleImagesContainer, WordRelatedImagesContainer } from './styled';
 
 const mock = [
     {
@@ -29,13 +25,12 @@ const mock = [
 
 export const HandleImages: FC = () => {
     const {
-        selectedImages,
         currentWord,
         newImagesToBeAdded,
         imgExist,
-        removeImage,
         setNewImagesToBeAdded,
         addImages,
+        remove,
     } = useApp();
     const [imagesToAdd, setImagesToAdd] = useState<ImgProps[]>(mock);
     const { t } = useTranslation();
@@ -50,50 +45,24 @@ export const HandleImages: FC = () => {
         setNewImagesToBeAdded([...tmpArr]);
     };
 
-    const remove = (imgUrl: string) => {
-        const tmpArr: ImgProps[] = newImagesToBeAdded.filter(
-            ({ url }) => url.toLowerCase() !== imgUrl.toLowerCase(),
-        );
-        setNewImagesToBeAdded([...tmpArr]);
-        removeImage(currentWord, imgUrl);
-    };
-
     return (
-        <HandleImagesContainer>
-            <WordRelatedImagesContainer id="word-related-images">
-                {imagesToAdd.map(({ url, alt }, index) => (
-                    <Img
-                        url={url}
-                        alt={alt}
-                        isSelected={imgExist(url)}
-                        key={`${currentWord}-${index}`}
-                        remove={() => remove(url)}
-                        add={() => select({ alt, url, isSelected: true })}
-                    />
-                ))}
-                {imagesToAdd.length > 0 && (
-                    <button
-                        onClick={addImages}
-                        id="add-images"
-                    >{t`home:step-two.labels.add-images`}</button>
-                )}
-            </WordRelatedImagesContainer>
-            <AudioImagesContainer>
-                {selectedImages.map(({ images, word }) =>
-                    images.map(({ alt, url }, index) => (
-                        <Img
-                            url={url}
-                            alt={alt}
-                            isSelected={true}
-                            key={`${word}-${index}`}
-                            remove={() => {
-                                remove(url);
-                                removeImage(word, url);
-                            }}
-                        />
-                    )),
-                )}
-            </AudioImagesContainer>
-        </HandleImagesContainer>
+        <WordRelatedImagesContainer id="word-related-images">
+            {imagesToAdd.map(({ url, alt }, index) => (
+                <Img
+                    url={url}
+                    alt={alt}
+                    isSelected={imgExist(url)}
+                    key={`${currentWord}-${index}`}
+                    remove={() => remove(url)}
+                    add={() => select({ alt, url, isSelected: true })}
+                />
+            ))}
+            {imagesToAdd.length > 0 && (
+                <button
+                    onClick={addImages}
+                    id="add-images"
+                >{t`home:step-two.labels.add-images`}</button>
+            )}
+        </WordRelatedImagesContainer>
     );
 };

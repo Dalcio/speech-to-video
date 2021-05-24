@@ -1,13 +1,15 @@
 import { useApp } from '@app-data';
+import { AllSelectedImages } from '@components/all-selected-images';
 import { HandleImages } from '@components/images';
-import React, { ChangeEvent, FC, useEffect } from 'react';
-import CurrentWord from './current-word';
 
-import { StepTwoContainer, StepTwoAsideLeft } from './styled';
+import React, { ChangeEvent, FC, useEffect } from 'react';
+
+import CurrentWord from './current-word';
+import { StepTwoContainer, StepTwoAsideLeft, StepTwoWrapper } from './styled';
 import { StepTwoProps } from './types';
 
 const StepTwo: FC<StepTwoProps> = ({ setStep }) => {
-    const { setTranscript, transcript, handleCurrentWord } = useApp();
+    const { transcript, setTranscript, handleCurrentWord } = useApp();
 
     const handleTextArea = (event: ChangeEvent<HTMLTextAreaElement>) => {
         setTranscript(event.target.value);
@@ -18,13 +20,16 @@ const StepTwo: FC<StepTwoProps> = ({ setStep }) => {
     }, []);
 
     return (
-        <StepTwoContainer>
-            <StepTwoAsideLeft>
-                <CurrentWord />
-                <textarea value={transcript} onChange={handleTextArea} />
-            </StepTwoAsideLeft>
-            <HandleImages />
-        </StepTwoContainer>
+        <StepTwoWrapper>
+            <StepTwoContainer>
+                <StepTwoAsideLeft>
+                    <CurrentWord />
+                    <textarea value={transcript} onChange={handleTextArea} />
+                </StepTwoAsideLeft>
+                <HandleImages />
+            </StepTwoContainer>
+            <AllSelectedImages />
+        </StepTwoWrapper>
     );
 };
 
