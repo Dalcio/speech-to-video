@@ -50,12 +50,21 @@ export const CurrentWordContainer = styled.div`
     background-color: ${({ theme }) => theme.colors.primary};
 
     span {
+        color: ${({ theme }) => theme.colors.white};
+        font-size: inherit;
+        font-weight: bold;
+        margin-left: ${({ theme }) => theme.spacing.s};
+    }
+
+    input {
         flex: 1;
         text-align: center;
         background-color: ${({ theme }) => theme.colors.white};
+        border: unset;
         border-radius: ${({ theme }) => theme.borderRadius.s};
         margin: 0 ${({ theme }) => theme.spacing.s};
         padding: ${({ theme }) => theme.spacing.xs};
+        outline: none;
     }
 `;
 

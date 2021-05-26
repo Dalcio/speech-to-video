@@ -9,7 +9,13 @@ import {
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useSnackbar } from '@hooks/use-snackbar';
 import useTranslation from 'next-translate/useTranslation';
-import React, { FC } from 'react';
+import React, {
+    ChangeEvent,
+    FC,
+    TextareaHTMLAttributes,
+    useEffect,
+    useState,
+} from 'react';
 
 import { CurrentWordContainer, PreviousNextWordBtn } from './styled';
 
@@ -26,11 +32,13 @@ const CurrentWord: FC = () => {
     } = useApp();
     const { openErrorSnackbar } = useSnackbar();
     const { t } = useTranslation();
+    const [wordToSearch, setWordToSearch] = useState<string>('');
 
     const getImages = async () => {
+        alert('hello');
         setNewImagesToBeAdded([]);
         try {
-            const res = await fetch(`${KEYS.localhost}${currentWord}`);
+            const res = await fetch(`${KEYS.localhost}${wordToSearch}`);
             const images = await res.json();
             if (images) {
                 const aux: ImgProps[] = [];
@@ -48,6 +56,14 @@ const CurrentWord: FC = () => {
         }
     };
 
+    useEffect(() => {
+        setWordToSearch(currentWord);
+    }, [currentWord]);
+
+    const handleWordToSearch = (event: ChangeEvent<HTMLInputElement>) => {
+        setWordToSearch(event.target.value);
+    };
+
     return (
         <CurrentWordContainer>
             <PreviousNextWordBtn
@@ -56,7 +72,9 @@ const CurrentWord: FC = () => {
             >
                 <FontAwesomeIcon icon={faChevronLeft} />
             </PreviousNextWordBtn>
-            <span>{currentWord}</span>
+            {currentWord.toLowerCase() !== wordToSearch.toLowerCase() &&
+                wordToSearch !== '' && <span>{currentWord} : </span>}
+            <input value={wordToSearch} onChange={handleWordToSearch} />
             <PreviousNextWordBtn
                 onClick={getImages}
                 disabled={currentWord === '' || currentWord === undefined}
