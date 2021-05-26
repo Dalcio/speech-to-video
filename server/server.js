@@ -9,7 +9,6 @@ app.get('/:image', async (req, res) => {
     const image = req.params.image;
 
     const imageJson = await imageScraper(image);
-
     return res.json(imageJson);
 });
 

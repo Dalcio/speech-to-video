@@ -1,4 +1,4 @@
-const Scraper = require('images-scraper');
+const Scraper = require('./scraper/index.js');
 
 const google = new Scraper({
     puppeteer: {
@@ -7,8 +7,12 @@ const google = new Scraper({
 });
 
 const imageScraper = async (image) => {
-    const results = await google.scrape(image, 200);
-    return results;
+    try {
+        const results = await google.scrape(image, 20);
+        return results;
+    } catch (error) {
+        return [];
+    }
 };
 
 module.exports = imageScraper;
