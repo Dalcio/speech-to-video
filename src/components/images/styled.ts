@@ -33,6 +33,7 @@ export const WordRelatedImagesContainer = styled.div`
         border: 5px solid ${({ theme }) => theme.colors.primary};
     }
 
+    #load-more,
     #add-images {
         cursor: pointer;
         position: absolute;
@@ -47,6 +48,12 @@ export const WordRelatedImagesContainer = styled.div`
         border-radius: ${({ theme }) => theme.borderRadius.s};
         &:hover {
             opacity: 0.8;
+        }
+    }
+    #load-more {
+        right: ${({ theme }) => theme.spacing.xl};
+        span {
+            color: red;
         }
     }
 `;

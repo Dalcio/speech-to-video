@@ -8,11 +8,13 @@ export type AppContextProps = {
     newImagesToBeAdded: ImgProps[];
     transcriptsIndex: number;
     imagesToAdd: ImgProps[];
+    imagesLength: number;
     setImagesToAdd: (img: ImgProps[]) => void;
     imgExist: (imgUrl: string) => boolean;
     addImages: () => void;
     previousWord: () => void;
     nextWord: () => void;
+    loadMoreImages: () => void;
     removeImage: (relatedWord: string, imgUrl: string) => void;
     setAudioFile: (audioFile: AudioFile) => void;
     setVideoFile: (videoFile: VideoFile) => void;

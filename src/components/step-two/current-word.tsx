@@ -9,13 +9,7 @@ import {
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useSnackbar } from '@hooks/use-snackbar';
 import useTranslation from 'next-translate/useTranslation';
-import React, {
-    ChangeEvent,
-    FC,
-    TextareaHTMLAttributes,
-    useEffect,
-    useState,
-} from 'react';
+import React, { ChangeEvent, FC, useEffect, useState } from 'react';
 
 import { CurrentWordContainer, PreviousNextWordBtn } from './styled';
 
@@ -29,16 +23,18 @@ const CurrentWord: FC = () => {
         setNewImagesToBeAdded,
         transcriptsIndex,
         transcripts,
+        imagesLength,
     } = useApp();
     const { openErrorSnackbar } = useSnackbar();
     const { t } = useTranslation();
     const [wordToSearch, setWordToSearch] = useState<string>('');
 
     const getImages = async () => {
-        alert('hello');
         setNewImagesToBeAdded([]);
         try {
-            const res = await fetch(`${KEYS.localhost}${wordToSearch}`);
+            const res = await fetch(
+                `${KEYS.localhost}${wordToSearch}&${imagesLength}`,
+            );
             const images = await res.json();
             if (images) {
                 const aux: ImgProps[] = [];

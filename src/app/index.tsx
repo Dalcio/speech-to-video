@@ -29,6 +29,7 @@ export const AppContext = createContext<AppContextProps>({
     previousWord: () => undefined,
     nextWord: () => undefined,
     setImagesToAdd: () => undefined,
+    loadMoreImages: () => undefined,
     imagesToAdd: [],
     selectedImages: [],
     transcriptsIndex: undefined,
@@ -38,6 +39,7 @@ export const AppContext = createContext<AppContextProps>({
     transcripts: undefined,
     currentWord: undefined,
     newImagesToBeAdded: undefined,
+    imagesLength: 30,
 });
 
 export const useApp = () => useContext(AppContext);
@@ -55,6 +57,7 @@ export const AppProvider: FC = ({ children }) => {
     const [transcripts, setTranscripts] = useState<string[]>([]);
     const [transcriptsIndex, setTranscriptsIndex] = useState<number>(0);
     const [currentWord, handleCurrentWord] = useState<string>('');
+    const [imagesLength, setImagesLength] = useState<number>(30);
     const [imagesToAdd, setImagesToAdd] = useState<ImgProps[]>([]);
 
     const addImages = () => {
@@ -156,54 +159,62 @@ export const AppProvider: FC = ({ children }) => {
         }
     }, [selectedImages, currentWord]);
 
+    const loadMoreImages = () => {
+        setImagesLength((prev) => prev + 20);
+    };
+
     const values = useMemo(
         () => ({
+            newImagesToBeAdded,
+            transcriptsIndex,
             selectedImages,
+            imagesLength,
+            transcripts,
+            currentWord,
+            imagesToAdd,
             audioFile,
             videoFile,
             transcript,
-            transcripts,
-            currentWord,
-            newImagesToBeAdded,
-            transcriptsIndex,
-            imagesToAdd,
-            nextWord,
-            previousWord,
+            remove,
             imgExist,
-            setTranscript,
-            setTranscripts,
-            setAudioFile,
-            setVideoFile,
+            nextWord,
             addImages,
             removeImage,
-            handleCurrentWord,
-            remove,
-            setNewImagesToBeAdded,
+            previousWord,
+            setAudioFile,
+            setVideoFile,
+            setTranscript,
+            loadMoreImages,
             setImagesToAdd,
+            setTranscripts,
+            handleCurrentWord,
+            setNewImagesToBeAdded,
         }),
         [
+            newImagesToBeAdded,
+            transcriptsIndex,
             selectedImages,
+            imagesLength,
+            transcripts,
+            currentWord,
+            imagesToAdd,
             audioFile,
             videoFile,
             transcript,
-            transcripts,
-            currentWord,
-            newImagesToBeAdded,
-            transcriptsIndex,
-            imagesToAdd,
-            nextWord,
-            previousWord,
+            remove,
             imgExist,
-            setTranscript,
-            setTranscripts,
-            setAudioFile,
-            setVideoFile,
+            nextWord,
             addImages,
             removeImage,
-            handleCurrentWord,
-            remove,
-            setNewImagesToBeAdded,
+            previousWord,
+            setAudioFile,
+            setVideoFile,
+            setTranscript,
+            loadMoreImages,
             setImagesToAdd,
+            setTranscripts,
+            handleCurrentWord,
+            setNewImagesToBeAdded,
         ],
     );
 
