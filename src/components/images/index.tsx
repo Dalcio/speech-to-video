@@ -12,30 +12,25 @@ export const HandleImages: FC = () => {
     const {
         currentWord,
         newImagesToBeAdded,
+        transcripts,
         imgExist,
         setNewImagesToBeAdded,
         addImages,
         remove,
+        imagesToAdd,
     } = useApp();
     const { openErrorSnackbar } = useSnackbar();
-    const [imagesToAdd, setImagesToAdd] = useState<ImgProps[]>([]);
     const { t } = useTranslation();
 
-    const getImages = async () => {
-        try {
-            const res = await fetch(`${KEYS.localhost}${currentWord}`);
-            const images = await res.json();
-            console.log(images);
-        } catch (error) {
-            openErrorSnackbar(t`common:errors.something-wrong`);
-        }
-    };
-
-    useEffect(() => {
-        if (currentWord === '' || !currentWord) {
-            getImages();
-        }
-    }, [currentWord]);
+    // useEffect(() => {
+    //     if (
+    //         currentWord !== '' &&
+    //         currentWord !== undefined &&
+    //         transcripts.length > 1
+    //     ) {
+    //         getImages();
+    //     }
+    // }, [currentWord, transcripts]);
 
     const select = (img: ImgProps) => {
         const tmpArr: ImgProps[] = [...newImagesToBeAdded];

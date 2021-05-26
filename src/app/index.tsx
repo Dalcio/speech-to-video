@@ -28,6 +28,8 @@ export const AppContext = createContext<AppContextProps>({
     remove: () => undefined,
     previousWord: () => undefined,
     nextWord: () => undefined,
+    setImagesToAdd: () => undefined,
+    imagesToAdd: [],
     selectedImages: [],
     transcriptsIndex: undefined,
     audioFile: undefined,
@@ -53,6 +55,7 @@ export const AppProvider: FC = ({ children }) => {
     const [transcripts, setTranscripts] = useState<string[]>([]);
     const [transcriptsIndex, setTranscriptsIndex] = useState<number>(0);
     const [currentWord, handleCurrentWord] = useState<string>('');
+    const [imagesToAdd, setImagesToAdd] = useState<ImgProps[]>([]);
 
     const addImages = () => {
         const index = selectedImages.findIndex(
@@ -82,18 +85,20 @@ export const AppProvider: FC = ({ children }) => {
         const index = selectedImages.findIndex(
             ({ word }) => word.toLowerCase() === relatedWord.toLowerCase(),
         );
-        const tempImages = selectedImages[index].images.filter(
-            ({ url }) => url !== imgUrl,
-        );
-        const tmpSpecificWordImages: SelectedImageProps = {
-            ...selectedImages[index],
-            images: tempImages,
-        };
+        if (index >= 0) {
+            const tempImages = selectedImages[index].images.filter(
+                ({ url }) => url !== imgUrl,
+            );
+            const tmpSpecificWordImages: SelectedImageProps = {
+                ...selectedImages[index],
+                images: tempImages,
+            };
 
-        const tmpSelectedImages: SelectedImageProps[] = [...selectedImages];
-        tmpSelectedImages[index] = tmpSpecificWordImages;
+            const tmpSelectedImages: SelectedImageProps[] = [...selectedImages];
+            tmpSelectedImages[index] = tmpSpecificWordImages;
 
-        setSelectedImages([...tmpSelectedImages]);
+            setSelectedImages([...tmpSelectedImages]);
+        }
     };
 
     const remove = (imgUrl: string) => {
@@ -134,7 +139,7 @@ export const AppProvider: FC = ({ children }) => {
     }, [transcript]);
 
     useEffect(() => {
-        if (currentWord === '' || !currentWord) {
+        if (transcripts.length >= 1) {
             handleCurrentWord(transcripts[0]);
         }
         if (transcripts.length <= 0) {
@@ -161,6 +166,7 @@ export const AppProvider: FC = ({ children }) => {
             currentWord,
             newImagesToBeAdded,
             transcriptsIndex,
+            imagesToAdd,
             nextWord,
             previousWord,
             imgExist,
@@ -173,6 +179,7 @@ export const AppProvider: FC = ({ children }) => {
             handleCurrentWord,
             remove,
             setNewImagesToBeAdded,
+            setImagesToAdd,
         }),
         [
             selectedImages,
@@ -183,6 +190,7 @@ export const AppProvider: FC = ({ children }) => {
             currentWord,
             newImagesToBeAdded,
             transcriptsIndex,
+            imagesToAdd,
             nextWord,
             previousWord,
             imgExist,
@@ -195,6 +203,7 @@ export const AppProvider: FC = ({ children }) => {
             handleCurrentWord,
             remove,
             setNewImagesToBeAdded,
+            setImagesToAdd,
         ],
     );
 

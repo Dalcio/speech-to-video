@@ -6,6 +6,7 @@ export const WordRelatedImagesContainer = styled.div`
     overflow-x: hidden;
     padding: ${({ theme }) => `0 0 ${theme.spacing.s} ${theme.spacing.s}`};
     justify-content: space-evenly;
+    height: 560px;
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
 

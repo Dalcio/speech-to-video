@@ -7,6 +7,8 @@ export type AppContextProps = {
     currentWord: string;
     newImagesToBeAdded: ImgProps[];
     transcriptsIndex: number;
+    imagesToAdd: ImgProps[];
+    setImagesToAdd: (img: ImgProps[]) => void;
     imgExist: (imgUrl: string) => boolean;
     addImages: () => void;
     previousWord: () => void;
@@ -37,5 +39,5 @@ export type SelectedImageProps = {
 export type ImgProps = {
     url: string;
     alt: string;
-    isSelected: boolean;
+    isSelected?: boolean;
 };
