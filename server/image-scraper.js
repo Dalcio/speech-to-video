@@ -6,9 +6,9 @@ const google = new Scraper({
     },
 });
 
-const imageScraper = async (image) => {
+const imageScraper = async (image, length) => {
     try {
-        const results = await google.scrape(image, 20);
+        const results = await google.scrape(image, length);
         return results;
     } catch (error) {
         return [];
