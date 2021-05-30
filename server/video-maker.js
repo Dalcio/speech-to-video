@@ -9,7 +9,10 @@ const mockImages = [
 const videoMaker = async (images, audio = '') => {
     const videoConverter = new VideoConverter({}, {});
 
-    videoConverter.downloadImages(images);
+    videoConverter.downloadImages(images, () => {
+        videoConverter.makeVideo();
+    });
+
     // const audioFile = videoConverter.downloadAudio(audio);
 };
 
