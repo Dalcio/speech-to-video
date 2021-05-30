@@ -1,7 +1,9 @@
 const express = require('express');
 const app = express();
 const cors = require('cors');
+
 const imageScraper = require('./image-scraper');
+const videoMaker = require('./video-maker');
 
 app.use(cors());
 
@@ -17,7 +19,9 @@ app.get('/:images&audio', async (req, res) => {
     const images = req.params.images;
     const audio = req.params.audio;
 
-    return res.json('responseURL');
+    return videoMaker(images, audio, (url) => {
+        return res.json(url);
+    });
 });
 
 const port = process.env.PORT || 8080;
