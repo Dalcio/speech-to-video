@@ -13,6 +13,13 @@ app.get('/:image&:length', async (req, res) => {
     return res.json(imageJson);
 });
 
+app.get('/:images&audio', async (req, res) => {
+    const images = req.params.images;
+    const audio = req.params.audio;
+
+    return res.json('responseURL');
+});
+
 const port = process.env.PORT || 8080;
 
 app.listen(port, () => {
