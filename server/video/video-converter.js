@@ -4,14 +4,15 @@ const videoshow = require('videoshow');
 const downloadImage = require('image-downloader').image;
 const path = require('path');
 const fs = require('fs');
-const { throws } = require('node:assert');
-
-// var upload_video = require('./video_upload.js');
+const cloudinary = require('./cloudnary');
 
 class VideoConverter {
     constructor(
         imagesParams = {},
-        audioParams = {},
+        audioParams = {
+            fade: true,
+            delay: 2,
+        },
         videoName = 'video-file-converted',
     ) {
         this.audio = undefined;
@@ -63,11 +64,11 @@ class VideoConverter {
         recursiveDownload();
     }
 
-    async downloadAudio(audio) {
+    async downloadAudio() {
         //
     }
 
-    async unlinkImages() {
+    unlinkImages() {
         const imagesFolder = path.normalize(`${__dirname}/files/images/`);
 
         this.images = [];
@@ -79,16 +80,26 @@ class VideoConverter {
         });
     }
 
-    async unlinkVideo() {
+    unlinkVideo() {
         fs.unlinkSync(this.video);
     }
 
-    async unlinkAudio() {
+    unlinkAudio() {
         fs.unlinkSync(this.audio);
     }
 
-    async _uploadVideo() {
-        // upload_video();
+    async uploadVideo(cb) {
+        try {
+            const result = await cloudinary.uploader.upload(this.video, {
+                resource_type: 'video',
+                overwrite: true,
+            });
+            this.videoUrl = await result.url;
+            cb(this.videoUrl);
+            this.unlinkVideo();
+        } catch (error) {
+            throw new Error(error);
+        }
     }
 
     async resizeImages() {
@@ -126,7 +137,7 @@ class VideoConverter {
         this.images = tmpImgs;
     }
 
-    async makeVideo() {
+    async makeVideo(cb) {
         if (this.images.length === 0 || !this.images)
             throw new Error('Invalid set of images');
 
@@ -137,14 +148,12 @@ class VideoConverter {
         // .audio(audio, audioParams)
         videoshow(this.images)
             .save(pathToSave)
-            .on('start', (command) => {
-                // console.log('ffmpeg process started:', command);
-            })
             .on('error', (err) => {
-                throws(err);
+                throw new Error(err);
             })
-            .on('end', (output) => {
-                // console.log('Video created in:', output);
+            .on('end', async () => {
+                this.video = pathToSave;
+                await this.uploadVideo(cb);
                 this.unlinkImages();
             });
     }
