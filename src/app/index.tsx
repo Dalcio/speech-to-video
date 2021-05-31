@@ -7,13 +7,7 @@ import React, {
     useMemo,
     useState,
 } from 'react';
-import {
-    AppContextProps,
-    AudioFile,
-    ImgProps,
-    SelectedImageProps,
-    VideoFile,
-} from './type';
+import { AppContextProps, ImgProps, SelectedImageProps } from './type';
 
 export const AppContext = createContext<AppContextProps>({
     setNewImagesToBeAdded: () => undefined,
@@ -51,8 +45,8 @@ export const AppProvider: FC = ({ children }) => {
     const [newImagesToBeAdded, setNewImagesToBeAdded] = useState<ImgProps[]>(
         [],
     );
-    const [audioFile, setAudioFile] = useState<VideoFile>();
-    const [videoFile, setVideoFile] = useState<AudioFile>();
+    const [audioFile, setAudioFile] = useState<string>('');
+    const [videoFile, setVideoFile] = useState<string>('');
     const [transcript, setTranscript] = useState<string>('');
     const [transcripts, setTranscripts] = useState<string[]>([]);
     const [transcriptsIndex, setTranscriptsIndex] = useState<number>(0);

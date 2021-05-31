@@ -6,7 +6,7 @@ import React, { FC, useState } from 'react';
 import { BodyContainer } from './styled';
 
 export const Body: FC = () => {
-    const [step, setStep] = useState<number>(2);
+    const [step, setStep] = useState<number>(1);
 
     return (
         <BodyContainer>

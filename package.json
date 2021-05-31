@@ -20,6 +20,7 @@
         "@fortawesome/free-solid-svg-icons": "^5.15.3",
         "@fortawesome/react-fontawesome": "^0.1.14",
         "axios": "^0.21.1",
+        "http-url-builder": "^1.0.0",
         "next": "10.2.0",
         "next-compose-plugins": "^2.2.1",
         "next-translate": "^1.0.1",

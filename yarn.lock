@@ -3622,6 +3622,11 @@ http-signature@~1.2.0:
     jsprim "^1.2.2"
     sshpk "^1.7.0"
 
+http-url-builder@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/http-url-builder/-/http-url-builder-1.0.0.tgz#b2626b166a2d542bd05f31ae9a4a4d7ee8c607ad"
+  integrity sha512-GMTX2BfU20sJ6tM5qYV9kc1XveDX0TPQFdEw/7jW5wFXPEyuoVRN0tv4jNcP50SZl28mGK7OeBuxNq1HRsPkDg==
+
 https-browserify@1.0.0, https-browserify@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/https-browserify/-/https-browserify-1.0.0.tgz#ec06c10e0a34c0f2faf199f7fd7fc78fffd03c73"
