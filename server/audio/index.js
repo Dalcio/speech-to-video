@@ -1,6 +1,8 @@
-const fs = require('fs');
+const { RecognizeConstants } = require('ibm-watson/speech-to-text/v1');
 const SpeechToTextV1 = require('ibm-watson/speech-to-text/v1');
 const { IamAuthenticator } = require('ibm-watson/auth');
+const fs = require('fs');
+
 const downloadAudio = require('./download-audio');
 
 const ibmSpeechToText = async (audio, callback) => {
@@ -16,6 +18,10 @@ const ibmSpeechToText = async (audio, callback) => {
     const params = {
         audio: fs.createReadStream(audioPath),
         contentType: 'audio/flac; rate=44100',
+        model: RecognizeConstants.Model.PT_BR_BROADBANDMODEL,
+        language: 'pt-BR',
+        languageCustomizationId: 'pt-BR',
+        grammarName: 'pt-BR',
     };
 
     try {
