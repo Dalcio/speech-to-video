@@ -18,10 +18,10 @@ const ibmSpeechToText = async (audio, callback) => {
     const params = {
         audio: fs.createReadStream(audioPath),
         contentType: 'audio/flac; rate=44100',
-        model: RecognizeConstants.Model.PT_BR_BROADBANDMODEL,
-        language: 'pt-BR',
-        languageCustomizationId: 'pt-BR',
-        grammarName: 'pt-BR',
+        // model: RecognizeConstants.Model.PT_BR_BROADBANDMODEL,
+        // language: 'pt-BR',
+        // languageCustomizationId: 'pt-BR',
+        // grammarName: 'pt-BR',
     };
 
     try {
