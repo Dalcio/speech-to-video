@@ -1,6 +1,10 @@
 import styled from 'styled-components';
 
-export const RecordContainer = styled.button`
+type RecordContainerProps = {
+    show: boolean;
+};
+
+export const RecordContainer = styled.button<RecordContainerProps>`
     cursor: pointer;
     width: 96px;
     height: 96px;
@@ -11,9 +15,41 @@ export const RecordContainer = styled.button`
     font-size: 40px;
     text-align: center;
 
-    &:hover,
-    &:focus {
+    &:hover {
         opacity: 0.8;
+    }
+
+    ${({ show }) => {
+        if (show) {
+            return `
+                animation: move-rl 1s;
+                animation: recording 1.2s infinite;
+            `;
+        }
+    }}
+
+    @keyframes move-rl {
+        0% {
+            margin-left: calc(50% - 48px);
+        }
+    }
+
+    @keyframes recording {
+        0% {
+            border: 10px solid black;
+        }
+        25% {
+            border: 20px solid black;
+        }
+        50% {
+            border: 30px solid black;
+        }
+        75% {
+            border: 40px solid black;
+        }
+        100% {
+            border: 50px solid black;
+        }
     }
 
     @media (max-width: ${({ theme }) => theme.breakpoints.medium}) {

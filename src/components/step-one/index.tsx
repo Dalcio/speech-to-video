@@ -18,10 +18,14 @@ const StepOne: FC<StepOneProps> = ({ setStep }) => {
             </TextContainer>
             <StepOneContainer>
                 {(show === 'both' || show === 'drag') && (
-                    <DropZone setShow={setShow} show={show} />
+                    <DropZone setShow={setShow} show={show} setStep={setStep} />
                 )}
                 {(show === 'both' || show === 'record') && (
-                    <RecordButton setShow={setShow} show={show} />
+                    <RecordButton
+                        setShow={setShow}
+                        show={show}
+                        setStep={setStep}
+                    />
                 )}
             </StepOneContainer>
         </StepOneWrapper>

@@ -6,7 +6,7 @@ import { AudioProps } from '../types';
 
 import { DropZoneContainer } from './styled';
 
-export const DropZone: FC<AudioProps> = ({ setShow, show }) => {
+export const DropZone: FC<AudioProps> = ({ setShow, show, setStep }) => {
     const { t } = useTranslation();
     const [selected, setSelected] = useState<string>('');
     const { setAudioFile } = useApp();
