@@ -29,7 +29,8 @@ const ibmSpeechToText = async (audio, callback) => {
         if (response) {
             const alternatives = response.result.results[0].alternatives;
             const bestAlternative = alternatives.sort(
-                (a, b) => b.confidence - a.confidence,
+                ({ confidence }, { confidence: _confidence }) =>
+                    _confidence - confidence,
             );
 
             if (callback) {
