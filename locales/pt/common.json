@@ -6,5 +6,19 @@
     "language": "Pt to English",
     "errors": {
         "something-wrong": "Aconteu Alguma coisa na busca de imagens."
+    },
+    "record": {
+        "media_aborted": "Mídia abortada",
+        "permission_denied": "permissão negada",
+        "no_specified_media_found": "Nenhuma mídia especificada encontrada",
+        "media_in_use": "Mídia em uso",
+        "invalid_media_constraints": "Restrições de mídia inválidas",
+        "no_constraints": "Sem restrições",
+        "recorder_error": "Erro do gravador",
+        "idle": "Ocioso",
+        "acquiring_media": "Aquisição de mídia",
+        "recording": "Gravando",
+        "stopping": "Parando",
+        "stopped": "Parado"
     }
 }

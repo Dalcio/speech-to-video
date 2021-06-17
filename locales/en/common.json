@@ -6,5 +6,19 @@
     "language": "En para Português",
     "errors": {
         "something-wrong": "Something happened in the search for images."
+    },
+    "record": {
+        "media_aborted": "Media aborted",
+        "permission_denied": "Permission denied",
+        "no_specified_media_found": "No specified media found",
+        "media_in_use": "Media in use",
+        "invalid_media_constraints": "Invalid media constraints",
+        "no_constraints": "No constraints",
+        "recorder_error": "Recorder error",
+        "idle": "Idle",
+        "acquiring_media": "Acquiring media",
+        "recording": "Recording",
+        "stopping": "Stopping",
+        "stopped": "Stopped"
     }
 }

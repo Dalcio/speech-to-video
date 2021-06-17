@@ -1459,6 +1459,13 @@ attr-accept@^2.2.1:
   resolved "https://registry.yarnpkg.com/attr-accept/-/attr-accept-2.2.2.tgz#646613809660110749e92f2c10833b70968d929b"
   integrity sha512-7prDjvt9HmqiZ0cl5CRjtS84sEyhsHP2coDkaZKRKVfCDo9s7iw7ChVmar78Gu9pC4SoR/28wFu/G5JJhTnqEg==
 
+audio-react-recorder@^1.0.4:
+  version "1.0.4"
+  resolved "https://registry.yarnpkg.com/audio-react-recorder/-/audio-react-recorder-1.0.4.tgz#db81f10286c2252af8d42162e1f49dbd1de0dffd"
+  integrity sha512-an7eX0yOGDbZOSu2LvnfWIsI41pkx9nXgtBVbI+9ByS91WKqoVGVb5pbmqHax5sZty2DjOIG/neuxcghIU/ucg==
+  dependencies:
+    prop-types "^15.7.2"
+
 available-typed-arrays@^1.0.2:
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/available-typed-arrays/-/available-typed-arrays-1.0.2.tgz#6b098ca9d8039079ee3f77f7b783c4480ba513f5"
