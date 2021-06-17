@@ -11,40 +11,50 @@ import { useSnackbar } from '@hooks/use-snackbar';
 
 export const RecordButton: FC<AudioProps> = ({ setShow, show, setStep }) => {
     const { status, startRecording, stopRecording, mediaBlobUrl } =
-        useReactMediaRecorder({ video: false, audio: true });
+        useReactMediaRecorder({ video: false, audio: true, onStop });
     const { openErrorSnackbar, openSuccessSnackbar } = useSnackbar();
 
     const { setAudioFile } = useApp();
 
-    const start = () => {
+    function start() {
         setShow('record');
         startRecording();
-    };
+    }
 
-    const stop = () => {
+    function onStop(blobUrl: string, blob: Blob) {
         stopRecording();
-        setStep(2);
-    };
-
-    useEffect(() => {
-        if (status !== 'idle') {
-            if (
-                status === 'recording' ||
-                status === 'stopped' ||
-                status === 'stopping' ||
-                status === 'acquiring_media'
-            )
-                return openSuccessSnackbar(`common:record.${status}`);
+        if (blob) {
+            // setStep(2);
+        } else {
             return openErrorSnackbar(`common:record.${status}`);
         }
-    }, [status]);
+    }
 
-    useEffect(() => {
-        if (mediaBlobUrl) {
-            // Make upload here
-            console.log(mediaBlobUrl);
-        }
-    }, [mediaBlobUrl]);
+    useEffect(
+        function () {
+            if (status !== 'idle') {
+                if (
+                    status === 'recording' ||
+                    status === 'stopped' ||
+                    status === 'stopping' ||
+                    status === 'acquiring_media'
+                )
+                    return openSuccessSnackbar(`common:record.${status}`);
+                return openErrorSnackbar(`common:record.${status}`);
+            }
+        },
+        [status],
+    );
+
+    useEffect(
+        function () {
+            if (mediaBlobUrl) {
+                // Make upload here
+                console.log(mediaBlobUrl);
+            }
+        },
+        [mediaBlobUrl],
+    );
 
     return (
         <>
