@@ -1,9 +1,11 @@
 const express = require('express');
 const app = express();
 const cors = require('cors');
+require('dotenv').config();
 
 const imageScraper = require('./image-scraper');
 const videoMaker = require('./video-maker');
+const ibmSpeechToText = require('./audio');
 
 app.use(cors());
 
@@ -21,6 +23,14 @@ app.get('/make-video', async (req, res) => {
 
     return videoMaker(images, audio, (url) => {
         return res.json(url);
+    });
+});
+
+app.get('/speech-to-text', async (req, res) => {
+    const audio = JSON.stringify(req.query.audio);
+
+    return ibmSpeechToText(audio, (transcript) => {
+        return res.json(transcript);
     });
 });
 
