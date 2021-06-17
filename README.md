@@ -107,3 +107,167 @@ Fast, easy and reliable testing for anything that runs in a browser.
 ## License
 
 MIT
+
+common pt
+{
+    "name": "Speech to Video",
+    "hello": "Diga olá ao ",
+    "img-description": "Fluxo de transformação de audio ou fala para vídeo",
+    "app-description": "O Speech to Video, transforma o seu discurso em um conjunto de imagens gerando um video que corresponde a junção das imagens com o seu discurso.",
+    "language": "Pt to English",
+    "errors": {
+        "something-wrong": "Aconteu Alguma coisa na busca de imagens."
+    },
+    "record": {
+        "media_aborted": "Mídia abortada",
+        "permission_denied": "permissão negada",
+        "no_specified_media_found": "Nenhuma mídia especificada encontrada",
+        "media_in_use": "Mídia em uso",
+        "invalid_media_constraints": "Restrições de mídia inválidas",
+        "no_constraints": "Sem restrições",
+        "recorder_error": "Erro do gravador",
+        "idle": "Ocioso",
+        "acquiring_media": "Aquisição de mídia",
+        "recording": "Gravando",
+        "stopping": "Parando",
+        "stopped": "Parado"
+    }
+}
+en
+{
+    "name": "Speech to Video",
+    "hello": "Sey Hello to ",
+    "img-description": "Speech to video transform flow",
+    "app-description": "Speech to Video transforms your speech into a set of images generating a video that corresponds to the junction of the images with your speech.",
+    "language": "En para Português",
+    "errors": {
+        "something-wrong": "Something happened in the search for images."
+    },
+    "record": {
+        "media_aborted": "Media aborted",
+        "permission_denied": "Permission denied",
+        "no_specified_media_found": "No specified media found",
+        "media_in_use": "Media in use",
+        "invalid_media_constraints": "Invalid media constraints",
+        "no_constraints": "No constraints",
+        "recorder_error": "Recorder error",
+        "idle": "Idle",
+        "acquiring_media": "Acquiring media",
+        "recording": "Recording",
+        "stopping": "Stopping",
+        "stopped": "Stopped"
+    }
+}
+
+´´´´´´´´
+
+import React, { FC } from 'react';
+import { useReactMediaRecorder } from 'react-media-recorder';
+
+import { faMicrophone } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { useApp } from '@app-data';
+
+import { AudioProps } from '../types';
+import { RecordContainer } from './styled';
+
+export const RecordButton: FC<AudioProps> = ({ setShow, show, setStep }) => {
+    const { status, startRecording, stopRecording, mediaBlobUrl } =
+        useReactMediaRecorder({ video: false, audio: true });
+
+    const { setAudioFile } = useApp();
+
+    const start = () => () => {
+        setShow('record');
+        alert(status);
+        startRecording();
+    };
+
+    const stop = () => () => {
+        stopRecording();
+        // setStep(2);
+    };
+
+    return (
+        <>
+            <h1>{status}</h1>
+            <RecordContainer
+                onClick={(show === 'record' && stop) || start}
+                show={show === 'record'}
+                status={status}
+            >
+                <FontAwesomeIcon icon={faMicrophone} id="text" />
+            </RecordContainer>
+        </>
+    );
+};
+*******
+    import { StatusMessages } from 'react-media-recorder';
+import styled from 'styled-components';
+
+type RecordContainerProps = {
+    show: boolean;
+    status: StatusMessages;
+};
+
+export const RecordContainer = styled.button<RecordContainerProps>`
+    cursor: pointer;
+    width: 96px;
+    height: 96px;
+    border: none;
+    border-radius: 100%;
+    background-color: red;
+    color: ${({ theme }) => theme.colors.white};
+    font-size: 40px;
+    text-align: center;
+
+    &:hover {
+        opacity: 0.8;
+    }
+
+    ${({ show }) => {
+        if (show) {
+            return `animation: move-rl 1s;`;
+        }
+    }}
+
+    ${({ status }) => {
+        if (status === 'recording') {
+            return `animation: recording 1.2s infinite;`;
+        }
+    }}
+    
+    @keyframes move-rl {
+        0% {
+            margin-left: calc(50% - 48px);
+        }
+    }
+
+    @keyframes recording {
+        0% {
+            border: 10px solid black;
+        }
+        25% {
+            border: 20px solid black;
+        }
+        50% {
+            border: 30px solid black;
+        }
+        75% {
+            border: 40px solid black;
+        }
+        100% {
+            border: 50px solid black;
+        }
+    }
+
+    @media (max-width: ${({ theme }) => theme.breakpoints.medium}) {
+        margin-top: 20px;
+    }
+
+    @media (min-width: ${({ theme }) => theme.breakpoints.medium}) {
+        width: 100px;
+        height: 100px;
+        margin-left: -50px;
+    }
+`;
