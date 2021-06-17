@@ -1,41 +1,61 @@
-import React, { FC } from 'react';
-import AudioReactRecorder, { RecordState } from 'audio-react-recorder';
+import React, { FC, useEffect } from 'react';
+import { useReactMediaRecorder } from 'react-media-recorder';
+
 import { faMicrophone } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-
 import { useApp } from '@app-data';
 
 import { AudioProps } from '../types';
 import { RecordContainer } from './styled';
-import { useState } from 'react';
+import { useSnackbar } from '@hooks/use-snackbar';
 
 export const RecordButton: FC<AudioProps> = ({ setShow, show, setStep }) => {
-    const [recordState, setRecordState] = useState<string>();
+    const { status, startRecording, stopRecording, mediaBlobUrl } =
+        useReactMediaRecorder({ video: false, audio: true });
+    const { openErrorSnackbar, openSuccessSnackbar } = useSnackbar();
+
     const { setAudioFile } = useApp();
 
     const start = () => {
         setShow('record');
-        setRecordState(RecordState.START);
+        startRecording();
     };
 
     const stop = () => {
-        setRecordState(RecordState.STOP);
+        stopRecording();
+        setStep(2);
     };
 
-    const onStopRecord = (audioData) => {
-        setStep(2);
-        console.log('audioData', audioData);
-    };
+    useEffect(() => {
+        if (status !== 'idle') {
+            if (
+                status === 'recording' ||
+                status === 'stopped' ||
+                status === 'stopping' ||
+                status === 'acquiring_media'
+            )
+                return openSuccessSnackbar(`common:record.${status}`);
+            return openErrorSnackbar(`common:record.${status}`);
+        }
+    }, [status]);
+
+    useEffect(() => {
+        if (mediaBlobUrl) {
+            // Make upload here
+            console.log(mediaBlobUrl);
+        }
+    }, [mediaBlobUrl]);
 
     return (
         <>
-            <AudioReactRecorder state={recordState} onStop={onStopRecord} />
             <RecordContainer
                 onClick={(show === 'record' && stop) || start}
                 show={show === 'record'}
+                status={status}
             >
                 <FontAwesomeIcon icon={faMicrophone} id="text" />
             </RecordContainer>
+            {!mediaBlobUrl && <audio src={mediaBlobUrl} controls />}
         </>
     );
 };

@@ -1,7 +1,9 @@
+import { StatusMessages } from 'react-media-recorder';
 import styled from 'styled-components';
 
 type RecordContainerProps = {
     show: boolean;
+    status: StatusMessages;
 };
 
 export const RecordContainer = styled.button<RecordContainerProps>`
@@ -21,10 +23,13 @@ export const RecordContainer = styled.button<RecordContainerProps>`
 
     ${({ show }) => {
         if (show) {
-            return `
-                animation: move-rl 1s;
-                animation: recording 1.2s infinite;
-            `;
+            return `animation: move-rl 1s;`;
+        }
+    }}
+
+    ${({ status }) => {
+        if (status === 'recording') {
+            return `animation: recording 1.2s infinite;`;
         }
     }}
 
