@@ -11,7 +11,7 @@ export const AllSelectedImages: React.FC = () => {
     //     // setDragId(e.currentTarget.accessKey);
     //     // console.log(e.currentTarget.accessKey);
     // };
-
+    //https://react-dnd.github.io/react-dnd/examples/sortable/simple
     // const handleDrop = (ev: DragEvent<HTMLImageElement>) => {
     //     // const dragBox = selectedImages.find(({images}, ) => box.id === dragId);
     //     // const dropBox = selectedImages.find(
