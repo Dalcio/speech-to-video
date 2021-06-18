@@ -3,7 +3,7 @@
     "step-one": {
         "drag-n-drop": {
             "inactive": "Arraste e solte o áudio aqui ou clique para selecioná-lo",
-            "active": "Largue o áudio aqui, por ex.: .mp3, .wav ..."
+            "active": "Largue o áudio aqui. Só é suportado .flac"
         },
         "title": "Transforme áudio em vídeo como nunca antes",
         "message": "Você pode transformar seu áudio em vídeo enviando um arquivo ou pode gravar um áudio agora e transformá-lo em vídeo clicando no botão para gravar"
@@ -12,8 +12,8 @@
         "labels": {
             "select": "Selecionar",
             "remove": "Remover",
-            "add-images":"Adicionar imagens",
-            "transform":"Transformar agora"
+            "add-images": "Adicionar imagens",
+            "transform": "Transformar agora"
         }
     }
 }

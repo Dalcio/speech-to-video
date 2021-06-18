@@ -1,17 +1,15 @@
 import { useApp } from '@app-data';
 import { useSnackbar } from '@hooks/use-snackbar';
 import useTranslation from 'next-translate/useTranslation';
-import React, { FC, useCallback, useState } from 'react';
+import React, { FC, useCallback } from 'react';
 import { useDropzone as useDropZone } from 'react-dropzone';
 
-import { AudioProps } from '../types';
 import { uploadFile } from '../upload';
 
 import { DropZoneContainer } from './styled';
 
-export const DropZone: FC<AudioProps> = ({ setShow, show, setStep }) => {
+export const DropZone: FC = () => {
     const { t } = useTranslation();
-    const [selected, setSelected] = useState<string>('');
     const { openErrorSnackbar } = useSnackbar();
     const { setAudioFile } = useApp();
 
@@ -31,11 +29,7 @@ export const DropZone: FC<AudioProps> = ({ setShow, show, setStep }) => {
             {isDragActive ? (
                 <p>{t`home:step-one.drag-n-drop.active`}</p>
             ) : (
-                <p>
-                    {(selected === '' &&
-                        t`home:step-one.drag-n-drop.inactive`) ||
-                        selected}
-                </p>
+                <p>{t`home:step-one.drag-n-drop.inactive`}</p>
             )}
         </DropZoneContainer>
     );

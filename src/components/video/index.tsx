@@ -1,7 +1,6 @@
 import { useApp } from '@app-data';
 import { KEYS } from '@constants';
 import { useSnackbar } from '@hooks';
-import useTranslation from 'next-translate/useTranslation';
 import React, { useEffect, useState } from 'react';
 import { VideoContainer } from './styled';
 import { UrlBuilder } from 'http-url-builder';
@@ -10,7 +9,6 @@ export const Video: React.FC = () => {
     const { selectedImages, audioFile, setVideoFile, videoFile } = useApp();
     const [isLoading, setIsLoading] = useState<boolean>(false);
     const { openErrorSnackbar } = useSnackbar();
-    const { t } = useTranslation();
 
     const makeVideo = async () => {
         setIsLoading(true);
@@ -33,7 +31,7 @@ export const Video: React.FC = () => {
 
             setVideoFile(res);
         } catch (error) {
-            openErrorSnackbar(t`common:errors.something-wrong`);
+            openErrorSnackbar(`common:errors.something-wrong`);
         }
         setIsLoading(false);
     };

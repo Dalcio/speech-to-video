@@ -9,7 +9,7 @@ import { AudioProps } from '../types';
 import { RecordContainer } from './styled';
 import { useSnackbar } from '@hooks/use-snackbar';
 
-export const RecordButton: FC<AudioProps> = ({ setShow, show, setStep }) => {
+export const RecordButton: FC<AudioProps> = ({ setShow, show }) => {
     const { status, startRecording, stopRecording, mediaBlobUrl } =
         useReactMediaRecorder({ video: false, audio: true, onStop });
     const { openErrorSnackbar, openSuccessSnackbar } = useSnackbar();
