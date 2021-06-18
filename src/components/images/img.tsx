@@ -5,7 +5,18 @@ import React, { FC, useEffect, useState } from 'react';
 import { ImgContainer } from './styled';
 import { ExtendedImgProps } from './type';
 
-const Img: FC<ExtendedImgProps> = ({ url, alt, isSelected, add, remove }) => {
+const Img: FC<ExtendedImgProps> = ({
+    url,
+    alt,
+    accessKey,
+    isSelected,
+    add,
+    remove,
+    draggable,
+    onDragOver,
+    onDragStart,
+    onDrop,
+}) => {
     const [label, setLabel] = useState<string>('');
     const { t } = useTranslation();
     const { showImage } = useDisplayImage();
@@ -33,7 +44,12 @@ const Img: FC<ExtendedImgProps> = ({ url, alt, isSelected, add, remove }) => {
     return (
         <ImgContainer>
             <img
+                draggable={draggable}
+                onDragOver={onDragOver}
+                onDragStart={onDragStart}
+                onDrop={onDrop}
                 id={`img-${isSelected ? 'remove' : 'select'}`}
+                accessKey={accessKey}
                 src={url}
                 alt={alt}
                 onClick={onClick}
