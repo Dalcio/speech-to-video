@@ -5,7 +5,8 @@
     "app-description": "Speech to Video transforms your speech into a set of images generating a video that corresponds to the junction of the images with your speech.",
     "language": "En para Português",
     "errors": {
-        "something-wrong": "Something happened in the search for images."
+        "something-wrong": "Something happened in the search for images.",
+        "something-wrong-general": "Something happened. Please try again."
     },
     "record": {
         "media_aborted": "Media aborted",

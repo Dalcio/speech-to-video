@@ -5,7 +5,8 @@
     "app-description": "O Speech to Video, transforma o seu discurso em um conjunto de imagens gerando um video que corresponde a junção das imagens com o seu discurso.",
     "language": "Pt to English",
     "errors": {
-        "something-wrong": "Aconteu Alguma coisa na busca de imagens."
+        "something-wrong": "Aconteu Alguma coisa na busca de imagens.",
+        "something-wrong-general": "Alguma coisa aconteceu. Porfavor tente denovo"
     },
     "record": {
         "media_aborted": "Mídia abortada",
