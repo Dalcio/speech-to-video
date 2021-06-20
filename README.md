@@ -2,6 +2,15 @@
 
 Não se hospedou o projeto, devido custos adicionais com o servidor da aplicação.
 
+## Clonando o projeto
+
+Para que tenhas acesso ao projeto é preciso que o clones antes. Copie e cole o código em seu terminal e prima enter
+
+```bash
+    git clone https://github.com/Dalcio/speech-to-video.git
+```
+Após o clone, siga o que se segue
+
 ## Projeto possui duas partes.
 
 -   Server (API)
