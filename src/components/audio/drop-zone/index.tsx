@@ -11,16 +11,26 @@ import { DropZoneContainer } from './styled';
 export const DropZone: FC = () => {
     const { t } = useTranslation();
     const { openErrorSnackbar } = useSnackbar();
-    const { setAudioFile } = useApp();
+    const { setAudioPublicId, setAudioFile, setAudioType, setAudioVersion } =
+        useApp();
+
+    const successUpload = (data) => {
+        // console.log(data);
+        setAudioVersion(data.version);
+        setAudioFile(data.url);
+        setAudioPublicId(data['public_id']);
+    };
 
     const onDrop = useCallback((acceptedFile) => {
-        uploadFile(acceptedFile[0], setAudioFile, openErrorSnackbar);
+        const { type } = acceptedFile[0];
+        setAudioType(type);
+        uploadFile(acceptedFile[0], successUpload, openErrorSnackbar);
     }, []);
 
     const { getRootProps, getInputProps, isDragActive } = useDropZone({
         onDrop,
         maxFiles: 1,
-        accept: 'audio/flac',
+        accept: '.mp3',
     });
 
     return (

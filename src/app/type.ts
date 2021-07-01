@@ -9,6 +9,12 @@ export type AppContextProps = {
     transcriptsIndex: number;
     imagesToAdd: ImgProps[];
     imagesLength: number;
+    audioType: string;
+    audioPublicId: string;
+    audioVersion: string;
+    setAudioType: (type: string) => void;
+    setAudioVersion: (version: string) => void;
+    setAudioPublicId: (publicId: string) => void;
     setImagesToAdd: (img: ImgProps[]) => void;
     imgExist: (imgUrl: string) => boolean;
     addImages: () => void;

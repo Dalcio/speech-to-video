@@ -19,7 +19,7 @@ export async function uploadFile(file, successCallback, failCallback) {
 
         axios.post(url, data).then((response) => {
             if (successCallback) {
-                successCallback(response.data.url);
+                successCallback(response.data);
             }
         });
     } catch (error) {

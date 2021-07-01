@@ -12,12 +12,26 @@ import { StepOneProps } from './type';
 const StepOne: FC<StepOneProps> = ({ setStep }) => {
     const { t } = useTranslation();
     const { openErrorSnackbar } = useSnackbar();
-    const { audioFile, setTranscript, transcript } = useApp();
+    const {
+        audioFile,
+        audioType,
+        audioVersion,
+        audioPublicId,
+        setTranscript,
+        transcript,
+    } = useApp();
     const [show, setShow] = useState<ShowProps>('both');
 
     useEffect(() => {
         if (audioFile) {
-            getTranscript(audioFile, setTranscript, openErrorSnackbar);
+            getTranscript({
+                audioUrl: audioFile,
+                audioType,
+                audioPublicId,
+                audioVersion,
+                setTranscript,
+                openErrorSnackbar,
+            });
         }
     }, [audioFile]);
 
@@ -34,9 +48,7 @@ const StepOne: FC<StepOneProps> = ({ setStep }) => {
                 <p>{t`home:step-one.message`}</p>
             </TextContainer>
             <StepOneContainer>
-                {(show === 'both' || show === 'drag') && (
-                    <DropZone setShow={setShow} show={show} />
-                )}
+                {(show === 'both' || show === 'drag') && <DropZone />}
                 {(show === 'both' || show === 'record') && (
                     <RecordButton setShow={setShow} show={show} />
                 )}

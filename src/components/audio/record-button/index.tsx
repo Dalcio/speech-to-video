@@ -65,7 +65,7 @@ export const RecordButton: FC<AudioProps> = ({ setShow, show }) => {
             >
                 <FontAwesomeIcon icon={faMicrophone} id="text" />
             </RecordContainer>
-            {!mediaBlobUrl && <audio src={mediaBlobUrl} controls />}
+            {/* {!mediaBlobUrl && <audio src={mediaBlobUrl} controls />} */}
         </>
     );
 };

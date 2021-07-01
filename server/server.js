@@ -27,9 +27,10 @@ app.get('/make-video', async (req, res) => {
 });
 
 app.get('/speech-to-text', async (req, res) => {
-    const audio = JSON.stringify(req.query.audio);
+    const contentType = req.query['content-type'];
+    const publicId = req.query['audio-public-id'];
 
-    return ibmSpeechToText(audio, (transcript) => {
+    return ibmSpeechToText(contentType, publicId, (transcript) => {
         return res.json(transcript);
     });
 });
