@@ -1,10 +1,10 @@
 const VideoConverter = require('./video');
 
-const videoMaker = (images, audio = '', cb) => {
+const videoMaker = (images, contentType, publicId, cb) => {
     const videoConverter = new VideoConverter({}, {});
 
     videoConverter.downloadImages(images, async () => {
-        await videoConverter.makeVideo(cb);
+        await videoConverter.makeVideo(contentType, publicId, cb);
     });
 };
 

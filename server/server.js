@@ -19,9 +19,10 @@ app.get('/:image&:length', async (req, res) => {
 
 app.get('/make-video', async (req, res) => {
     const images = JSON.parse(req.query.images);
-    const audio = JSON.stringify(req.query.audio);
+    const contentType = req.query['content-type'];
+    const publicId = req.query['audio-public-id'];
 
-    return videoMaker(images, audio, (url) => {
+    return videoMaker(images, contentType, publicId, (url) => {
         return res.json(url);
     });
 });

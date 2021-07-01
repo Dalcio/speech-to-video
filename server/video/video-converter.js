@@ -130,7 +130,7 @@ class VideoConverter {
         this.images = tmpImgs;
     }
 
-    async makeVideo(cb) {
+    async makeVideo(contentType, publicId, cb) {
         if (this.images.length === 0 || !this.images)
             throw new Error('Invalid set of images');
 
@@ -138,24 +138,20 @@ class VideoConverter {
             `${__dirname}/files/${this.videoName}.mp4`,
         );
         try {
-            downloadAudio(
-                this.audioContentType,
-                this.audioPublicId,
-                (audioPath) => {
-                    videoshow(this.images)
-                        .audio(audioPath, this.audioParams)
-                        .save(pathToSave)
-                        .on('error', (err) => {
-                            throw new Error(err);
-                        })
-                        .on('end', async () => {
-                            this.video = pathToSave;
-                            await this.uploadVideo(cb);
-                            this.unlinkImages();
-                            fs.unlinkSync(audioPath);
-                        });
-                },
-            );
+            downloadAudio(contentType, publicId, (audioPath) => {
+                videoshow(this.images)
+                    .audio(audioPath, this.audioParams)
+                    .save(pathToSave)
+                    .on('error', (err) => {
+                        throw new Error(err);
+                    })
+                    .on('end', async () => {
+                        this.video = pathToSave;
+                        await this.uploadVideo(cb);
+                        this.unlinkImages();
+                        fs.unlinkSync(audioPath);
+                    });
+            });
         } catch (error) {
             try {
                 videoshow(this.images)
