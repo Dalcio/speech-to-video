@@ -1,6 +1,6 @@
 const SpeechToTextV1 = require('ibm-watson/speech-to-text/v1');
 const { IamAuthenticator } = require('ibm-watson/auth');
-const { createReadStream } = require('fs');
+const { createReadStream, unlinkSync } = require('fs');
 // const path = require('path');
 
 const downloadAudio = require('./download-audio');
@@ -38,6 +38,7 @@ const ibmSpeechToText = async (contentType, publicId, callback) => {
                     );
 
                     if (callback) {
+                        unlinkSync(audioPath);
                         callback(bestAlternative[0].transcript);
                     }
                 }

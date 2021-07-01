@@ -5,6 +5,7 @@ const downloadImage = require('image-downloader').image;
 const path = require('path');
 const fs = require('fs');
 const cloudinary = require('./cloudnary');
+const downloadAudio = require('../audio/download-audio');
 
 class VideoConverter {
     constructor(
@@ -64,10 +65,6 @@ class VideoConverter {
         recursiveDownload();
     }
 
-    async downloadAudio() {
-        //
-    }
-
     unlinkImages() {
         const imagesFolder = path.normalize(`${__dirname}/files/images/`);
 
@@ -82,10 +79,6 @@ class VideoConverter {
 
     unlinkVideo() {
         fs.unlinkSync(this.video);
-    }
-
-    unlinkAudio() {
-        fs.unlinkSync(this.audio);
     }
 
     async uploadVideo(cb) {
@@ -144,18 +137,41 @@ class VideoConverter {
         const pathToSave = path.normalize(
             `${__dirname}/files/${this.videoName}.mp4`,
         );
-
-        // .audio(audio, audioParams)
-        videoshow(this.images)
-            .save(pathToSave)
-            .on('error', (err) => {
-                throw new Error(err);
-            })
-            .on('end', async () => {
-                this.video = pathToSave;
-                await this.uploadVideo(cb);
-                this.unlinkImages();
-            });
+        try {
+            downloadAudio(
+                this.audioContentType,
+                this.audioPublicId,
+                (audioPath) => {
+                    videoshow(this.images)
+                        .audio(audioPath, this.audioParams)
+                        .save(pathToSave)
+                        .on('error', (err) => {
+                            throw new Error(err);
+                        })
+                        .on('end', async () => {
+                            this.video = pathToSave;
+                            await this.uploadVideo(cb);
+                            this.unlinkImages();
+                            fs.unlinkSync(audioPath);
+                        });
+                },
+            );
+        } catch (error) {
+            try {
+                videoshow(this.images)
+                    .save(pathToSave)
+                    .on('error', (err) => {
+                        throw new Error(err);
+                    })
+                    .on('end', async () => {
+                        this.video = pathToSave;
+                        await this.uploadVideo(cb);
+                        this.unlinkImages();
+                    });
+            } catch (er) {
+                console.log(er);
+            }
+        }
     }
 }
 
