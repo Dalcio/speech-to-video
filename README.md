@@ -37,6 +37,10 @@ Em seguida, abra um terminal no diretório **root** do projeto e siga os seguint
 Abra um outro terminal no diretório root do projeto e siga os seguintes passos:
 
 ```bash
+    npm i yarn
+```
+
+```bash
     yarn install
 ```
 
